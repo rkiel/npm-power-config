@@ -3,7 +3,7 @@
 Prepare to publish
 
 ```bash
-npm version 0.0.1
+npm version patch
 
 feature rebase
 
