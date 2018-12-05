@@ -1,12 +1,20 @@
 {
   "name": "npm-power-config",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.0",
+  "description": "Utility to make it easier to construct config files",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rkiel/npm-power-config"
+  },
+   "bugs": {
+    "url": "https://github.com/rkiel/npm-power-config/issues"
+  },
+  "homepage": "https://github.com/rkiel/npm-power-config#readme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Robert Kiel",
+  "license": "MIT"
 }
