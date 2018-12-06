@@ -19,5 +19,9 @@
   },
   "keywords": [],
   "author": "Robert Kiel",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.19.0",
+    "lodash": "^4.17.11"
+  }
 }
