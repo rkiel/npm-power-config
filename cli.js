@@ -4,8 +4,16 @@ const _ = require('lodash');
 const fp = require('lodash/fp');
 const program = require('commander');
 
+function doesNotContainExampleWord(x) {
+  return !_.includes(['example', 'sample'], x);
+}
+
+function stripFileName(name) {
+  return _.filter(_.split(name, '.'), doesNotContainExampleWord).join('.');
+}
+
 function actionHandler() {
-  const actual = _.filter(_.split(program.example, '.'), x => x !== 'example').join('.');
+  const actual = stripFileName(program.example);
   console.log(program.example, actual);
 }
 
