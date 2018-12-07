@@ -110,7 +110,12 @@ function something(data, path, value, key) {
     _.each(json, lib.something(data, _.concat(path, key)));
   } else if (key !== '_path_') {
     const fullPath = _.concat(path, key);
-    const newValue = lib.anything(data, fullPath, value);
+    let newValue;
+    if (!_.isUndefined(value.value) && !_.isNull(value.value)) {
+      newValue = value.value;
+    } else {
+      newValue = lib.anything(data, fullPath, value);
+    }
     _.set(data.actualJson, fullPath.join('.'), newValue);
     _.set(data.personalJson, fullPath.join('.'), newValue);
   }

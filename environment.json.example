@@ -30,6 +30,9 @@
       "description": "This is first year of the car",
       "title": "Established",
       "type": "integer"
+    },
+    "wheels": {
+      "value": 4
     }
   }
 }
