@@ -17,8 +17,8 @@
   "scripts": {
     "json": "node cli.js -x environment.json.example",
     "yaml": "node cli.js -x environment.yaml.example",
-    "prejson": "rm -rf environment.json .environment.json",
-    "preyaml": "rm -rf environment.yaml .environment.yaml",
+    "prejson": "rm -rf environment.json",
+    "preyaml": "rm -rf environment.yaml",
     "postjson": "echo environment.json; cat environment.json; echo; echo .environment.json; cat .environment.json",
     "postyaml": "echo environment.yaml; cat environment.yaml; echo; echo .environment.yaml; cat .environment.yaml"
   },

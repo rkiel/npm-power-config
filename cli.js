@@ -61,7 +61,6 @@ function readExampleFile(data) {
     default:
       data.exampleJson = {};
   }
-  console.log(data.exampleJson);
   return data;
 }
 
@@ -83,12 +82,23 @@ function readPersonalFile(data) {
   return data;
 }
 
+function anything(data, fullPath, value) {
+  const personalValue = _.get(data.personalJson, fullPath.join('.'));
+  if (_.isUndefined(personalValue)) {
+    return null;
+  } else {
+    return personalValue;
+  }
+}
+
 function something(data, path, value, key) {
   if (_.isObject(value) && value._path_) {
     const json = _.get(data, _.concat([], 'exampleJson', path, key));
     _.each(json, lib.something(data, _.concat(path, key)));
   } else if (key !== '_path_') {
-    _.set(data.actualJson, _.concat(path, key).join('.'), value);
+    const fullPath = _.concat(path, key);
+    const newValue = lib.anything(data, fullPath, value);
+    _.set(data.actualJson, fullPath.join('.'), newValue);
   }
 }
 
@@ -151,6 +161,7 @@ lib = {
   readPersonalFile,
   generateOutput,
   something: _.curry(something),
+  anything,
   actionHandler,
   writePersonalFile,
   writeActualFile
