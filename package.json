@@ -1,6 +1,6 @@
 {
   "name": "power-config",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Utility to make it easier to construct config files",
   "main": "index.js",
   "repository": {
@@ -19,8 +19,7 @@
     "yaml": "node cli.js -x environment.yaml.example",
     "prejson": "rm -rf environment.json",
     "preyaml": "rm -rf environment.yaml",
-    "postjson":
-      "echo; echo environment.json; cat environment.json; echo; echo .environment.json; cat .environment.json",
+    "postjson": "echo; echo environment.json; cat environment.json; echo; echo .environment.json; cat .environment.json",
     "postyaml": "echo; echo environment.yaml; cat environment.yaml; echo; echo .environment.yaml; cat .environment.yaml"
   },
   "keywords": [],
