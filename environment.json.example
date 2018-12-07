@@ -1,0 +1,7 @@
+{
+  "make": {
+    "description": "This is the make of the car",
+    "title": "Make of car",
+    "type": "string"
+  }
+}

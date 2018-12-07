@@ -4,6 +4,15 @@ const _ = require('lodash');
 const fp = require('lodash/fp');
 const program = require('commander');
 
+const parseJsonFile = require('./lib/parseJsonFile');
+
+const fs = require('fs');
+
+function processFile(data) {
+  const json = parseJsonFile(data.example);
+  console.log(json);
+}
+
 function doesNotContainExampleWord(x) {
   return !_.includes(['example', 'sample'], x);
 }
@@ -13,12 +22,18 @@ function stripFileName(name) {
 }
 
 function actionHandler() {
-  const actual = stripFileName(program.example);
-  console.log(program.example, actual);
+  const data = {
+    example: program.example,
+    environment: program.environment,
+    actual: stripFileName(program.example)
+  };
+
+  processFile(data);
 }
 
 program
   .version('0.0.1')
-  .option('-e, --example <example>', 'The example')
+  .option('-x, --example <example>', 'The example configuration file')
+  .option('-e, --environment <environment>', 'The environment like dev, test, prod')
   .action(actionHandler)
   .parse(process.argv);
