@@ -15,35 +15,30 @@ We can create a JSON file that describes the information and structure of the co
 ```json
 {
   "make": {
-    "description": "This is the make of the car",
-    "title": "Make of car",
+    "description": "The make of the car",
+    "steps": ["go to AWS Console", "select IAM", "click on Users"],
     "type": "string"
   },
   "model": {
-    "description": "This is the model of the car",
-    "title": "Model of car",
+    "description": "The model of the car",
     "type": "string"
   },
   "color": {
-    "description": "This is the color of the car",
-    "title": "Color of car",
+    "description": "The color of the car",
     "type": "string"
   },
   "year": {
-    "description": "This is the model year of the car",
-    "title": "Model year",
+    "description": "The model year of the car",
     "type": "integer"
   },
   "new": {
-    "description": "Is this car new or used",
-    "title": "New car",
+    "description": "Is this a new car?",
     "type": "boolean"
   },
   "history": {
     "_path_": true,
     "established": {
-      "description": "This is first year of the car",
-      "title": "Established",
+      "description": "First year of the car",
       "type": "integer"
     },
     "wheels": {
@@ -62,23 +57,46 @@ npm run power-config -- -x automotive.json.example
 Since this is the first time using this example configuration file, we are prompted for the values.
 
 ```text
-This is the make of the car
-Make of car: Honda
+----------
+DESCRIPION: The make of the car
 
-This is the model of the car
-Model of car: Accord
+STEP 1.  go to AWS Console
+STEP 2.  select IAM
+STEP 3.  click on Users
 
-This is the color of the car
-Color of car: blue
+TYPE: string
 
-This is the model year of the car
-Model year: 2018
+make : Honda
+----------
+DESCRIPION: The model of the car
 
-Is this car new or used
-New car: yes
+TYPE: string
 
-This is first year of the car
-Established: 1990
+model : Accord
+----------
+DESCRIPION: The color of the car
+
+TYPE: string
+
+color : blue
+----------
+DESCRIPION: The model year of the car
+
+TYPE: integer
+
+year : 2018
+----------
+DESCRIPION: Is this a new car?
+
+TYPE: boolean
+
+new : yes
+----------
+DESCRIPION: First year of the car
+
+TYPE: integer
+
+history -> established : 1990
 ```
 
 `power-config` will create the actual configuration file `automotive.json`.
@@ -101,30 +119,28 @@ We can create a YAML file that describes the information and structure of the co
 
 ```yaml
 make:
-  description: This is the make of the car
-  title: Make of car
+  description: The make of the car
+  steps:
+    - go to AWS Console
+    - select IAM
+    - click on Users
   type: string
 model:
-  description: "This is the model of the car"
-  title: "Model of car"
-  type: "string"
+  description: The model of the car
+  type: string
 color:
-  description: "This is the color of the car"
-  title: "Color of car"
-  type: "string"
+  description: The color of the car
+  type: string
 year:
-  description: "This is the model year of the car"
-  title: "Model year"
-  type: "integer"
+  description: The model year of the car
+  type: integer
 new:
-  description: "Is this car new or used"
-  title: "New car"
-  type: "boolean"
+  description: Is this a new car?
+  type: boolean
 history:
   _path_: true
   established:
-    description: This is first year of the car
-    title: Established
+    description: First year of the car
     type: integer
   wheels:
     value: 4

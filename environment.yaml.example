@@ -1,28 +1,26 @@
 make:
-  description: This is the make of the car
-  title: Make of car
+  description: The make of the car
+  steps:
+    - go to AWS Console
+    - select IAM
+    - click on Users
   type: string
 model:
-  description: "This is the model of the car"
-  title: "Model of car"
-  type: "string"
+  description: The model of the car
+  type: string
 color:
-  description: "This is the color of the car"
-  title: "Color of car"
-  type: "string"
+  description: The color of the car
+  type: string
 year:
-  description: "This is the model year of the car"
-  title: "Model year"
-  type: "integer"
+  description: The model year of the car
+  type: integer
 new:
-  description: "Is this car new or used"
-  title: "New car"
-  type: "boolean"
+  description: Is this a new car?
+  type: boolean
 history:
   _path_: true
   established:
-    description: This is first year of the car
-    title: Established
+    description: First year of the car
     type: integer
   wheels:
     value: 4

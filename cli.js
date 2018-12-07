@@ -86,11 +86,20 @@ function readPersonalFile(data) {
 function anything(data, fullPath, value) {
   const personalValue = _.get(data.personalJson, fullPath.join('.'));
   if (_.isUndefined(personalValue) || _.isNull(personalValue)) {
+    console.log('----------');
     if (value.description) {
       console.log();
-      console.log(value.description);
+      console.log('DESCRIPION:', value.description);
     }
-    const answer = prompt(`${value.title}: `);
+    if (value.steps) {
+      console.log();
+      _.each(value.steps, (step, index) => console.log(`STEP ${index + 1}. `, step));
+    }
+    console.log();
+    //    console.log('KEY:', fullPath.join('.'));
+    console.log('TYPE:', value.type);
+    console.log();
+    const answer = prompt(`${fullPath.join(' -> ')} : `);
     switch (value.type) {
       case 'boolean':
         return _.includes(['yes', 'true'], answer);
