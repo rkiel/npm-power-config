@@ -3,7 +3,7 @@
 const _ = require('lodash');
 const fp = require('lodash/fp');
 const program = require('commander');
-const prompt = require('prompt-sync')();
+const prompt = require('prompt-sync')({ sigint: true });
 
 const parseJsonFile = require('./lib/parseJsonFile');
 const writeJsonFile = require('./lib/writeJsonFile');

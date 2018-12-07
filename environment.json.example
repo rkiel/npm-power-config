@@ -4,6 +4,26 @@
     "title": "Make of car",
     "type": "string"
   },
+  "model": {
+    "description": "This is the model of the car",
+    "title": "Model of car",
+    "type": "string"
+  },
+  "color": {
+    "description": "This is the color of the car",
+    "title": "Color of car",
+    "type": "string"
+  },
+  "year": {
+    "description": "This is the model year of the car",
+    "title": "Model year",
+    "type": "integer"
+  },
+  "new": {
+    "description": "Is this car new or used",
+    "title": "New car",
+    "type": "boolean"
+  },
   "history": {
     "_path_": true,
     "established": {
