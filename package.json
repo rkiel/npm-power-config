@@ -15,9 +15,16 @@
     "power-config": "./cli.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "json": "node cli.js -x environment.json.example",
+    "yaml": "node cli.js -x environment.yaml.example",
+    "prejson": "rm -rf environment.json",
+    "preyaml": "rm -rf environment.yaml",
+    "postjson": "cat environment.json",
+    "postyaml": "cat environment.yaml"
   },
-  "keywords": [],
+  "keywords": [
+
+  ],
   "author": "Robert Kiel",
   "license": "MIT",
   "dependencies": {

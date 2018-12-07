@@ -11,16 +11,16 @@ const writeYamlFile = require('./lib/writeYamlFile');
 
 const fs = require('fs');
 
-function addArguments(data) {
-  data.example = program.example;
+function addCommandLineArguments(data) {
+  data.exampleFileName = program.example;
   data.environment = program.environment;
   return data;
 }
 
-function addFormat(data) {
-  if (data.example.includes('.json')) {
+function addFileFormat(data) {
+  if (data.exampleFileName.includes('.json')) {
     data.format = 'json';
-  } else if (data.example.includes('.yaml') || data.example.includes('.yml')) {
+  } else if (data.exampleFileName.includes('.yaml') || data.exampleFileName.includes('.yml')) {
     data.format = 'yaml';
   } else {
     data.format = 'unknown';
@@ -28,34 +28,55 @@ function addFormat(data) {
   return data;
 }
 
-function addActual(data) {
-  const parts = _.split(data.example, '.');
+function addActualFileName(data) {
+  const parts = _.split(data.exampleFileName, '.');
   const doesNotContainExampleWord = x => !_.includes(['example', 'sample'], x);
   const lessParts = _.filter(parts, doesNotContainExampleWord);
-  data.actual = lessParts.join('.');
+  data.actualFileName = lessParts.join('.');
   return data;
 }
 
-function processFile(data) {
+function readExampleFile(data) {
   switch (data.format) {
     case 'json':
-      json = parseJsonFile(data.example);
-      writeJsonFile(data.actual, json);
+      data.json = parseJsonFile(data.exampleFileName);
       break;
     case 'yaml':
-      json = parseYamlFile(data.example);
-      writeYamlFile(data.actual, json);
+      data.json = parseYamlFile(data.exampleFileName);
       break;
     default:
-      json = {};
+      data.json = {};
   }
-  console.log(json);
+  return data;
+}
+
+function generateOutput(data) {
+  data.output = data.json;
+  return data;
+}
+
+function writeActualFile(data) {
+  switch (data.format) {
+    case 'json':
+      writeJsonFile(data.actualFileName, data.output);
+      break;
+    case 'yaml':
+      writeYamlFile(data.actualFileName, data.output);
+      break;
+  }
+  return data;
 }
 
 function actionHandler() {
-  const data = _.flow(addArguments, addActual, addFormat)({});
-
-  processFile(data);
+  const f = [
+    addCommandLineArguments,
+    addActualFileName,
+    addFileFormat,
+    readExampleFile,
+    generateOutput,
+    writeActualFile
+  ];
+  _.flow(f)({});
 }
 
 program
