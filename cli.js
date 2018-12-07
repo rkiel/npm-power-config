@@ -5,12 +5,18 @@ const fp = require('lodash/fp');
 const program = require('commander');
 
 const parseJsonFile = require('./lib/parseJsonFile');
+const parseYamlFile = require('./lib/parseYamlFile');
 
 const fs = require('fs');
 
 function processFile(data) {
-  const json = parseJsonFile(data.example);
-  console.log(json);
+  if (data.example.includes('.json')) {
+    const json = parseJsonFile(data.example);
+    console.log(json);
+  } else if (data.example.includes('.yaml') || data.example.includes('.yml')) {
+    const json = parseYamlFile(data.example);
+    console.log(json);
+  }
 }
 
 function doesNotContainExampleWord(x) {
