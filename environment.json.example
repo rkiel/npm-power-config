@@ -3,5 +3,13 @@
     "description": "This is the make of the car",
     "title": "Make of car",
     "type": "string"
+  },
+  "history": {
+    "_path_": true,
+    "established": {
+      "description": "This is first year of the car",
+      "title": "Established",
+      "type": "integer"
+    }
   }
 }

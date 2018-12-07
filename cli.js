@@ -11,6 +11,8 @@ const writeYamlFile = require('./lib/writeYamlFile');
 
 const fs = require('fs');
 
+let lib;
+
 function addEnvironment(data) {
   const environment = _.get(data, 'program.environment');
   if (!_.isUndefined(environment)) {
@@ -59,6 +61,7 @@ function readExampleFile(data) {
     default:
       data.exampleJson = {};
   }
+  console.log(data.exampleJson);
   return data;
 }
 
@@ -80,8 +83,19 @@ function readPersonalFile(data) {
   return data;
 }
 
+function something(data, path, value, key) {
+  if (_.isObject(value) && value._path_) {
+    const json = _.get(data, _.concat([], 'exampleJson', path, key));
+    _.each(json, lib.something(data, _.concat(path, key)));
+  } else if (key !== '_path_') {
+    _.set(data.actualJson, _.concat(path, key).join('.'), value);
+  }
+}
+
 function generateOutput(data) {
-  data.actualJson = data.exampleJson;
+  data.actualJson = {};
+  const json = _.get(data, 'exampleJson');
+  _.each(json, lib.something(data, []));
   return data;
 }
 
@@ -112,24 +126,39 @@ function writePersonalFile(data) {
 function actionHandler(p) {
   return function() {
     const f = [
-      addEnvironment,
-      addExampleFileName,
-      addActualFileName,
-      addPersonalFileName,
-      addFileFormat,
-      readExampleFile,
-      readPersonalFile,
-      generateOutput,
-      writePersonalFile,
-      writeActualFile
+      lib.addEnvironment,
+      lib.addExampleFileName,
+      lib.addActualFileName,
+      lib.addPersonalFileName,
+      lib.addFileFormat,
+      lib.readExampleFile,
+      lib.readPersonalFile,
+      lib.generateOutput,
+      lib.writePersonalFile,
+      lib.writeActualFile
     ];
     _.flow(f)({ program: p });
   };
 }
 
+lib = {
+  addEnvironment,
+  addExampleFileName,
+  addActualFileName,
+  addPersonalFileName,
+  addFileFormat,
+  readExampleFile,
+  readPersonalFile,
+  generateOutput,
+  something: _.curry(something),
+  actionHandler,
+  writePersonalFile,
+  writeActualFile
+};
+
 program
   .version('0.0.1')
   .option('-x, --example <example>', 'The example configuration file')
   .option('-e, --environment <environment>', 'The environment like dev, test, prod')
-  .action(actionHandler(program))
+  .action(lib.actionHandler(program))
   .parse(process.argv);
