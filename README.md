@@ -4,6 +4,11 @@
 
 [Commander.js](https://github.com/tj/commander.js/)
 
+## Features
+
+* Example files can be written in JSON or YAML
+* Output files can be JSON or YAML
+
 ## Examples
 
 ```json
