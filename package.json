@@ -19,8 +19,9 @@
     "yaml": "node cli.js -x environment.yaml.example",
     "prejson": "rm -rf environment.json",
     "preyaml": "rm -rf environment.yaml",
-    "postjson": "echo environment.json; cat environment.json; echo; echo .environment.json; cat .environment.json",
-    "postyaml": "echo environment.yaml; cat environment.yaml; echo; echo .environment.yaml; cat .environment.yaml"
+    "postjson":
+      "echo; echo environment.json; cat environment.json; echo; echo .environment.json; cat .environment.json",
+    "postyaml": "echo; echo environment.yaml; cat environment.yaml; echo; echo .environment.yaml; cat .environment.yaml"
   },
   "keywords": [],
   "author": "Robert Kiel",
@@ -28,6 +29,7 @@
   "dependencies": {
     "commander": "^2.19.0",
     "js-yaml": "^3.12.0",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "prompt-sync": "^4.1.6"
   }
 }

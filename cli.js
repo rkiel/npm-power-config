@@ -3,6 +3,7 @@
 const _ = require('lodash');
 const fp = require('lodash/fp');
 const program = require('commander');
+const prompt = require('prompt-sync')();
 
 const parseJsonFile = require('./lib/parseJsonFile');
 const writeJsonFile = require('./lib/writeJsonFile');
@@ -84,8 +85,20 @@ function readPersonalFile(data) {
 
 function anything(data, fullPath, value) {
   const personalValue = _.get(data.personalJson, fullPath.join('.'));
-  if (_.isUndefined(personalValue)) {
-    return null;
+  if (_.isUndefined(personalValue) || _.isNull(personalValue)) {
+    if (value.description) {
+      console.log();
+      console.log(value.description);
+    }
+    const answer = prompt(`${value.title}: `);
+    switch (value.type) {
+      case 'boolean':
+        return _.includes(['yes', 'true'], answer);
+      case 'integer':
+        return parseInt(answer, 10);
+      default:
+        return answer;
+    }
   } else {
     return personalValue;
   }
@@ -99,6 +112,7 @@ function something(data, path, value, key) {
     const fullPath = _.concat(path, key);
     const newValue = lib.anything(data, fullPath, value);
     _.set(data.actualJson, fullPath.join('.'), newValue);
+    _.set(data.personalJson, fullPath.join('.'), newValue);
   }
 }
 
