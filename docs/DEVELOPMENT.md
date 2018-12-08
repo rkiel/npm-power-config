@@ -4,6 +4,19 @@
 
 [Commander.js](https://github.com/tj/commander.js/)
 
+JSON examples
+
+```bash
+rm -rf examples/json/.*.json
+node cli.js -x examples/json/boolean.example.json
+node cli.js -x examples/json/environment.example.json -e test
+node cli.js -x examples/json/integer.example.json
+node cli.js -x examples/json/nested.example.json
+node cli.js -x examples/json/steps.example.json
+node cli.js -x examples/json/string.example.json
+node cli.js -x examples/json/value.example.json
+```
+
 Prepare to publish
 
 ```bash

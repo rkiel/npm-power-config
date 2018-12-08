@@ -1,0 +1,9 @@
+{
+  "hostname": {
+    "description": "The hostname",
+    "type": "string"
+  },
+  "domain": {
+    "description": "The domain"
+  }
+}

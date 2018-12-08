@@ -1,0 +1,6 @@
+{
+  "public": {
+    "description": "Is this public?",
+    "type": "boolean"
+  }
+}

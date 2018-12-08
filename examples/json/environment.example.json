@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "_path_": true,
+    "port": {
+      "description": "The port",
+      "type": "integer"
+    }
+  },
+  "test": {
+    "_path_": true,
+    "port": {
+      "description": "The port",
+      "type": "integer"
+    }
+  },
+  "prod": {
+    "_path_": true,
+    "port": {
+      "description": "The port",
+      "type": "integer"
+    }
+  }
+}

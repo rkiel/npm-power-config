@@ -1,0 +1,9 @@
+{
+  "server": {
+    "_path_": true,
+    "hostname": {
+      "description": "The hostname",
+      "type": "string"
+    }
+  }
+}

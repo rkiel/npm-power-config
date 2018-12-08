@@ -1,0 +1,6 @@
+{
+  "port": {
+    "description": "The port",
+    "type": "integer"
+  }
+}
