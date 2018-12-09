@@ -10,6 +10,7 @@ JSON examples
 rm -rf examples/json/.*.json
 node cli.js -x examples/json/boolean.example.json
 node cli.js -x examples/json/environment.example.json -e test
+node cli.js -x examples/json/environment2.example.json -e dev
 node cli.js -x examples/json/integer.example.json
 node cli.js -x examples/json/nested.example.json
 node cli.js -x examples/json/steps.example.json

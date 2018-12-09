@@ -14,12 +14,15 @@ const fs = require('fs');
 
 let lib;
 
-const DEFAULT_EXAMPLE = 'environment.json.example';
+const DEFAULT_EXAMPLE = 'environment.example.json';
 
 function addEnvironment(data) {
   const environment = _.get(data, 'program.environment');
-  if (!_.isUndefined(environment)) {
+  if (_.isUndefined(environment)) {
+    data.unusedEnvironments = [];
+  } else {
     data.environment = environment;
+    data.unusedEnvironments = _.without(data.environments, environment);
   }
   return data;
 }
@@ -71,6 +74,31 @@ function addFileFormat(data) {
   } else {
     data.format = 'unknown';
   }
+  return data;
+}
+
+function readInitializeFile(data) {
+  const searchFor = [
+    './.power-config.json',
+    './.power-config.yml',
+    './.power-config.yaml',
+    `${process.env.HOME}/.power-config.json`,
+    `${process.env.HOME}/.power-config.yml`,
+    `${process.env.HOME}/.power-config.yaml`
+  ];
+  const fileName = _.reduce(searchFor, (a, e) => (a !== false ? a : fs.existsSync(e) ? e : false), false);
+  if (fileName !== false && fileName.includes('.json')) {
+    data.rc = parseJsonFile(fileName);
+  } else if (fileName !== false && fileName.includes('.yml')) {
+    data.rc = parseYamlFile(fileName);
+  } else if (fileName !== false && fileName.includes('.yaml')) {
+    data.rc = parseYamlFile(fileName);
+  }
+  return data;
+}
+
+function addEnvironments(data) {
+  data.environments = _.get(data, 'rc.environments', ['local', 'dev', 'test', 'prod']);
   return data;
 }
 
@@ -207,6 +235,8 @@ function writeInputFile(data) {
 function actionHandler(p) {
   return function() {
     const f = [
+      lib.readInitializeFile,
+      lib.addEnvironments,
       lib.addEnvironment,
       lib.addExampleFileName,
       lib.addOutputFileName,
@@ -223,7 +253,9 @@ function actionHandler(p) {
 }
 
 lib = {
+  readInitializeFile,
   addEnvironment,
+  addEnvironments,
   addExampleFileName,
   addOutputFileName,
   addInputFileName,
