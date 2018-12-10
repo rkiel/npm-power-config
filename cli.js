@@ -19,7 +19,7 @@ function actionHandler(p) {
       lib._input.writeFile,
       lib._output.writeFile
     ];
-    _.flow(f)({ program: p });
+    _.flow(f)({ program: _.pick(p, ['input', 'output', 'example', 'environment']) });
   };
 }
 
