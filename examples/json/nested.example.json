@@ -10,6 +10,12 @@
         "three": {
           "description": "four",
           "type": "string"
+        },
+        "four": {
+          "five": {
+            "description": "six",
+            "type": "string"
+          }
         }
       }
     }

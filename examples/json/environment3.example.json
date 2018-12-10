@@ -1,0 +1,21 @@
+{
+  "hostname": {
+    "description": "The hostname",
+    "type": "string"
+  },
+  "port": {
+    "description": "The port",
+    "type": "integer",
+    "environment": ["test", "prod"]
+  },
+  "domain": {
+    "description": "The domain",
+    "type": "string",
+    "environment": "test"
+  },
+  "ip": {
+    "description": "The IP address",
+    "type": "string",
+    "environment": "prod"
+  }
+}

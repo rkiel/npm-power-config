@@ -3,7 +3,10 @@
     "hostname": "nemo",
     "one": {
       "two": {
-        "three": "four"
+        "three": "aaaaaaa",
+        "four": {
+          "five": "bbbbbbb"
+        }
       }
     }
   }
