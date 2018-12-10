@@ -4,6 +4,14 @@
     "hostname": {
       "description": "The hostname",
       "type": "string"
+    },
+    "one": {
+      "two": {
+        "three": {
+          "description": "four",
+          "type": "string"
+        }
+      }
     }
   }
 }
