@@ -12,6 +12,7 @@ node cli.js -x examples/json/boolean.example.json
 node cli.js -x examples/json/environment.example.json -e test
 node cli.js -x examples/json/environment2.example.json -e dev
 node cli.js -x examples/json/environment3.example.json -e test
+node cli.js -x examples/json/flatten.example.json -e test -f
 node cli.js -x examples/json/include.example.json
 node cli.js -x examples/json/integer.example.json
 node cli.js -x examples/json/nested.example.json
