@@ -16,6 +16,7 @@ node cli.js -x examples/json/integer.example.json
 node cli.js -x examples/json/nested.example.json
 node cli.js -x examples/json/steps.example.json
 node cli.js -x examples/json/string.example.json
+node cli.js -x examples/json/type.example.json
 node cli.js -x examples/json/value.example.json
 ```
 

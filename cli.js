@@ -15,7 +15,7 @@ function actionHandler(p) {
       lib._input.addFileName,
       lib._example.readFile,
       lib._input.readFile,
-      lib._output.generate,
+      lib._transform.generate,
       lib._input.writeFile,
       lib._output.writeFile
     ];
@@ -29,6 +29,7 @@ lib = {
   _example: require('./lib/example'),
   _output: require('./lib/output'),
   _input: require('./lib/input'),
+  _transform: require('./lib/transform'),
   actionHandler
 };
 
