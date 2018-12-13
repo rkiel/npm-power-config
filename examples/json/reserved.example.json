@@ -1,0 +1,6 @@
+{
+  "_type_": {
+    "description": "The type",
+    "type": "string"
+  }
+}

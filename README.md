@@ -1,5 +1,7 @@
 # power-config
 
+example + input = configuration
+
 ## Features
 
 * Example files can be written in JSON or YAML
@@ -7,6 +9,110 @@
 * Values can be hard coded or prompted for user input
 
 ## Examples
+
+### Description
+
+The `description` field provides the user prompt.
+
+```json
+{
+  "hostname": {
+    "description": "The hostname"
+  }
+}
+```
+
+`npm run power-config -- -x examples/json/description.example.json`
+
+```text
+DESCRIPION: The hostname
+
+TYPE: string
+
+hostname : wakanda
+```
+
+The output is `examples/json/description.json`
+
+```json
+{
+  "hostname": "wakanda"
+}
+```
+
+### Type
+
+The `type` field defines how the user input will be stored. The value can be one of: `string`, `integer`, or `boolean`. This is an optional field and will default to `string`.
+
+```json
+{
+  "hostname": {
+    "description": "The hostname",
+    "type": "string"
+  },
+  "port": {
+    "description": "The port",
+    "type": "integer"
+  },
+  "public": {
+    "description": "Is this public?",
+    "type": "boolean"
+  }
+}
+```
+
+`npm run power-config -- -x examples/json/type.example.json`
+
+```text
+DESCRIPION: The hostname
+
+TYPE: string
+
+hostname : wakanda
+----------
+
+DESCRIPION: The port
+
+TYPE: integer
+
+port : 8080
+----------
+
+DESCRIPION: Is this public?
+
+TYPE: boolean
+
+public : no
+```
+
+The output is `examples/json/type.json`
+
+```json
+{
+  "hostname": "wakanda",
+  "port": 8080,
+  "public": false
+}
+```
+
+### Boolean
+
+```json
+{
+  "public": {
+    "description": "Is this public?",
+    "type": "boolean"
+  }
+}
+```
+
+`npm run power-config -- -x examples/json/boolean.example.json`
+
+```json
+{
+  "public": true
+}
+```
 
 Here's a completely contrived example to illustrate how to use `power-config`. Suppose we have some kind of automotive application which needs a configuration file.
 

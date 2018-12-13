@@ -1,0 +1,6 @@
+{
+  "hostname": {
+    "description": "The hostname",
+    "type": "string"
+  }
+}
