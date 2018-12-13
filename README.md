@@ -12,7 +12,7 @@ example + input = configuration
 
 ### Description
 
-The `description` field provides the user prompt.
+The `description` field provides the user with some context or instruction for the entering the input. The data field (i.e. `hostname`) is used as the prompt.
 
 ```json
 {
@@ -25,7 +25,7 @@ The `description` field provides the user prompt.
 `npm run power-config -- -x examples/json/description.example.json`
 
 ```text
-DESCRIPION: The hostname
+DESCRIPTION: The hostname
 
 TYPE: string
 
@@ -64,21 +64,21 @@ The `type` field defines how the user input will be stored. The value can be one
 `npm run power-config -- -x examples/json/type.example.json`
 
 ```text
-DESCRIPION: The hostname
+DESCRIPTION: The hostname
 
 TYPE: string
 
 hostname : wakanda
 ----------
 
-DESCRIPION: The port
+DESCRIPTION: The port
 
 TYPE: integer
 
 port : 8080
 ----------
 
-DESCRIPION: Is this public?
+DESCRIPTION: Is this public?
 
 TYPE: boolean
 
@@ -164,7 +164,7 @@ Since this is the first time using this example configuration file, we are promp
 
 ```text
 ----------
-DESCRIPION: The make of the car
+DESCRIPTION: The make of the car
 
 STEP 1.  go to AWS Console
 STEP 2.  select IAM
@@ -174,31 +174,31 @@ TYPE: string
 
 make : Honda
 ----------
-DESCRIPION: The model of the car
+DESCRIPTION: The model of the car
 
 TYPE: string
 
 model : Accord
 ----------
-DESCRIPION: The color of the car
+DESCRIPTION: The color of the car
 
 TYPE: string
 
 color : blue
 ----------
-DESCRIPION: The model year of the car
+DESCRIPTION: The model year of the car
 
 TYPE: integer
 
 year : 2018
 ----------
-DESCRIPION: Is this a new car?
+DESCRIPTION: Is this a new car?
 
 TYPE: boolean
 
 new : yes
 ----------
-DESCRIPION: First year of the car
+DESCRIPTION: First year of the car
 
 TYPE: integer
 
