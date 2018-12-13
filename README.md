@@ -115,6 +115,48 @@ Sometimes no user input is needed. The `value` field can be used to simply set t
 }
 ```
 
+### Include
+
+An alternative to using `value` to provide hard-coded input is to include the contents of another file. The `include` field specifies the path to the file. The file will be read and parsed based on the file type.
+
+```json
+{
+  "avengers": {
+    "include": "examples/json/avengers.json"
+  },
+  "jla": {
+    "include": "examples/json/jla.yml"
+  }
+}
+```
+
+The included file(s) do not have to be the same file type as the source file.
+
+You can include a JSON file: `examples/json/avengers.json`
+
+```json
+["blackwidow", "captain", "hawkeye", "hulk", "ironman", "thor"]
+```
+
+You can include a YAML file: `examples/json/jla.yml`
+
+```yaml
+- batman
+- flash
+- aquaman
+- wonderwoman
+- cyborg
+```
+
+`npm run power-config -- -x examples/json/include.example.json`
+
+```json
+{
+  "avengers": ["blackwidow", "captain", "hawkeye", "hulk", "ironman", "thor"],
+  "jla": ["batman", "flash", "aquaman", "wonderwoman", "cyborg"]
+}
+```
+
 ### Steps
 
 Sometimes a `description` might not be the best way to help the user with the input. The `steps` field can provide a list of step-by-step instructions on how to get the information needed.

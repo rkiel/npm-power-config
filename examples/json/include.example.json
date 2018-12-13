@@ -1,5 +1,8 @@
 {
-  "actions": {
-    "include": "examples/json/actions.json"
+  "avengers": {
+    "include": "examples/json/avengers.json"
+  },
+  "jla": {
+    "include": "examples/json/jla.yml"
   }
 }
