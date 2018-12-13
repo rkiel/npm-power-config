@@ -130,15 +130,13 @@ An alternative to using `value` to provide hard-coded input is to include the co
 }
 ```
 
-The included file(s) do not have to be the same file type as the source file.
-
-You can include a JSON file: `examples/json/avengers.json`
+The included file(s) do not have to be the same file type as the source file. You can include a JSON file: `examples/json/avengers.json`
 
 ```json
 ["blackwidow", "captain", "hawkeye", "hulk", "ironman", "thor"]
 ```
 
-You can include a YAML file: `examples/json/jla.yml`
+Or you can include a YAML file: `examples/json/jla.yml`
 
 ```yaml
 - batman
