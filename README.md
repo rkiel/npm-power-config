@@ -95,22 +95,58 @@ The output is `examples/json/type.json`
 }
 ```
 
-### Boolean
+### Value
+
+Sometimes no user input is needed. The `value` field can be used to simply set the value.
 
 ```json
 {
-  "public": {
-    "description": "Is this public?",
-    "type": "boolean"
+  "port": {
+    "value": 8080
   }
 }
 ```
 
-`npm run power-config -- -x examples/json/boolean.example.json`
+`npm run power-config -- -x examples/json/value.example.json`
 
 ```json
 {
-  "public": true
+  "port": 8080
+}
+```
+
+### Steps
+
+Sometimes a `description` might not be the best way to help the user with the input. The `steps` field can provide a list of step-by-step instructions on how to get the information needed.
+
+```json
+{
+  "username": {
+    "description": "The AWS username",
+    "steps": ["go to AWS Console", "select IAM", "click on Users"]
+  }
+}
+```
+
+`npm run power-config -- -x examples/json/steps.example.json`
+
+```text
+DESCRIPTION: The AWS username
+
+STEP 1.  go to AWS Console
+STEP 2.  select IAM
+STEP 3.  click on Users
+
+TYPE: string
+
+username : sally
+```
+
+The output is `examples/json/steps.json`
+
+```json
+{
+  "username": "sally"
 }
 ```
 
