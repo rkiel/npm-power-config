@@ -150,6 +150,36 @@ The output is `examples/json/steps.json`
 }
 ```
 
+### Reserved words
+
+In some cases, you might want to define a field name that is a reserved word used by `power-config`. For example, you might want to define a field called `type`. Since `power-config` already uses that, you must wrap the field name with a leading and a trailing underscore.
+
+```json
+{
+  "_type_": {
+    "description": "The type"
+  }
+}
+```
+
+`npm run power-config -- -x examples/json/reserved.example.json`
+
+```text
+DESCRIPTION: The type
+
+TYPE: string
+
+_type_ : EC2 Instance
+```
+
+The output is `examples/json/reserved.json`
+
+```json
+{
+  "type": "EC2 Instance"
+}
+```
+
 Here's a completely contrived example to illustrate how to use `power-config`. Suppose we have some kind of automotive application which needs a configuration file.
 
 We can create a JSON file that describes the information and structure of the configuration file called `automotive.json.example`.
