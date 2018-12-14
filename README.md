@@ -405,7 +405,7 @@ Again, you were only prompted for the one environment but the output does not in
 }
 ```
 
-Of course, using the environment as a namespace is not limited to the top level. It can be used at lower levels of the namespace and you can change the structure of the output configuration file just like the previous three examples by changing the command-line options specified.
+Of course, using the environment as a namespace is not limited to the top level. It can be used at lower levels of the namespace and you can change the structure of the output configuration file, just like the previous three examples, by changing the command-line options specified.
 
 ```json
 {
