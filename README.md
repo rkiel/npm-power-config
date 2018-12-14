@@ -296,7 +296,7 @@ Each prompt shows the entire nested namespace. The output is `examples/json/nest
 
 It is not uncommon to have multiple deployment environments, such as development, test, and production. And as soon as you have multiple environments, your configuration will need to be different in each of those environments.
 
-By default, `power-config` supports the following environments: `local`, `dev`, `test`, and `prod`. (See the CLI examples to see how you can change this default.) It supports a variety of ways to create your configuration file.
+By default, `power-config` supports the following environments: `local`, `dev`, `test`, and `prod`. (See the CLI examples on how you can change this default.) It supports a variety of ways to create your configuration file.
 
 In your example file, you can use the environments just like any other nested namespace.
 
@@ -398,6 +398,56 @@ test -> port : 8080
 ```
 
 Again, you were only prompted for the one environment but the output does not include the environment itself.
+
+```json
+{
+  "port": 8080
+}
+```
+
+Of course, using the environment as a namespace is not limited to the top level. It can be used at lower levels of the namespace and the output configuration file can be structured just like the previous three examples by changing the command-line options specified.
+
+```json
+{
+  "port": {
+    "dev": {
+      "value": 80
+    },
+    "test": {
+      "description": "The port",
+      "type": "integer"
+    },
+    "prod": {
+      "description": "The port",
+      "type": "integer"
+    }
+  }
+}
+```
+
+`npm run power-config -- -x examples/json/environments4.example.json`
+
+```json
+{
+  "port": {
+    "dev": 80,
+    "test": 8080,
+    "prod": 80
+  }
+}
+```
+
+`npm run power-config -- -x examples/json/environments5.example.json -e test`
+
+```json
+{
+  "port": {
+    "test": 8080
+  }
+}
+```
+
+`npm run power-config -- -x examples/json/environments6.example.json -e test -f`
 
 ```json
 {
