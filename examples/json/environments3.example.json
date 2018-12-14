@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "port": {
+      "description": "The port",
+      "type": "integer"
+    }
+  },
+  "test": {
+    "port": {
+      "description": "The port",
+      "type": "integer"
+    }
+  },
+  "prod": {
+    "port": {
+      "description": "The port",
+      "type": "integer"
+    }
+  }
+}

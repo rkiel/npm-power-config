@@ -70,14 +70,12 @@ TYPE: string
 
 hostname : wakanda
 ----------
-
 DESCRIPTION: The port
 
 TYPE: integer
 
 port : 8080
 ----------
-
 DESCRIPTION: Is this public?
 
 TYPE: boolean
@@ -249,7 +247,7 @@ The structure of your configuration file does not have to be flat. You can creat
 }
 ```
 
-`npm run power-config -- -x examples/json/reserved.example.json`
+`npm run power-config -- -x examples/json/nested.example.json`
 
 ```text
 DESCRIPTION: The hostname
@@ -258,21 +256,18 @@ TYPE: string
 
 server -> database -> hostname : blue
 ----------
-
 DESCRIPTION: The port
 
 TYPE: integer
 
 server -> database -> port : 3000
 ----------
-
 DESCRIPTION: The hostname
 
 TYPE: string
 
 server -> proxy -> hostname : green
 ----------
-
 DESCRIPTION: The port
 
 TYPE: integer
@@ -296,3 +291,122 @@ Each prompt shows the entire nested namespace. The output is `examples/json/nest
   }
 }
 ```
+
+### Environments
+
+It is not uncommon to have multiple deployment environments, such as development, test, and production. And as soon as you have multiple environments, your configuration will need to be different in each of those environments.
+
+By default, `power-config` supports the following environments: `local`, `dev`, `test`, and `prod`. (See the CLI examples to see how you can change this default.) It supports a variety of ways to create your configuration file.
+
+In your example file, you can use the environments just like any other nested namespace.
+
+```json
+{
+  "dev": {
+    "port": {
+      "description": "The port",
+      "type": "integer"
+    }
+  },
+  "test": {
+    "port": {
+      "description": "The port",
+      "type": "integer"
+    }
+  },
+  "prod": {
+    "port": {
+      "description": "The port",
+      "type": "integer"
+    }
+  }
+}
+```
+
+The ability to change the structure of the output configuration file rests in the command-line options specified. First, simply specify the example file.
+
+`npm run power-config -- -x examples/json/environments1.example.json`
+
+```text
+DESCRIPTION: The port
+
+TYPE: integer
+
+dev -> port : 8080
+----------
+DESCRIPTION: The port
+
+TYPE: integer
+
+test -> port : 8080
+----------
+DESCRIPTION: The port
+
+TYPE: integer
+
+prod -> port : 80
+```
+
+Notice you were prompted for all three environments and the output included all three environments.
+
+```json
+{
+  "dev": {
+    "port": 8080
+  },
+  "test": {
+    "port": 8080
+  },
+  "prod": {
+    "port": 80
+  }
+}
+```
+
+Next, you can limit the scope to just one environment by specifying the environment.
+
+`npm run power-config -- -x examples/json/environments2.example.json -e test`
+
+```text
+DESCRIPTION: The port
+
+TYPE: integer
+
+test -> port : 8080
+```
+
+Notice you were only prompted for the one environment and the output only included the one environment.
+
+```json
+{
+  "test": {
+    "port": 8080
+  }
+}
+```
+
+Finally, you can not only limit the scope to just one environment but also flatten the output by removing the environment namespace.
+
+`npm run power-config -- -x examples/json/environments3.example.json -e test -f`
+
+```text
+DESCRIPTION: The port
+
+TYPE: integer
+
+test -> port : 8080
+```
+
+Again, you were only prompted for the one environment but the output does not include the environment itself.
+
+```json
+{
+  "port": 8080
+}
+```
+
+## CLI Examples
+
+* re-running commands
+* the dot file
+* the rc file
