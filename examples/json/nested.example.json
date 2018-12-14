@@ -1,22 +1,21 @@
 {
   "server": {
-    "_path_": true,
-    "hostname": {
-      "description": "The hostname",
-      "type": "string"
+    "database": {
+      "hostname": {
+        "description": "The hostname"
+      },
+      "port": {
+        "description": "The port",
+        "type": "integer"
+      }
     },
-    "one": {
-      "two": {
-        "three": {
-          "description": "four",
-          "type": "string"
-        },
-        "four": {
-          "five": {
-            "description": "six",
-            "type": "string"
-          }
-        }
+    "proxy": {
+      "hostname": {
+        "description": "The hostname"
+      },
+      "port": {
+        "description": "The port",
+        "type": "integer"
       }
     }
   }

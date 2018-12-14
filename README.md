@@ -219,3 +219,80 @@ The output is `examples/json/reserved.json`
   "type": "EC2 Instance"
 }
 ```
+
+### Nested values
+
+The structure of your configuration file does not have to be flat. You can create a namespace by nesting values within values.
+
+```json
+{
+  "server": {
+    "database": {
+      "hostname": {
+        "description": "The hostname"
+      },
+      "port": {
+        "description": "The port",
+        "type": "integer"
+      }
+    },
+    "proxy": {
+      "hostname": {
+        "description": "The hostname"
+      },
+      "port": {
+        "description": "The port",
+        "type": "integer"
+      }
+    }
+  }
+}
+```
+
+`npm run power-config -- -x examples/json/reserved.example.json`
+
+```text
+DESCRIPTION: The hostname
+
+TYPE: string
+
+server -> database -> hostname : blue
+----------
+
+DESCRIPTION: The port
+
+TYPE: integer
+
+server -> database -> port : 3000
+----------
+
+DESCRIPTION: The hostname
+
+TYPE: string
+
+server -> proxy -> hostname : green
+----------
+
+DESCRIPTION: The port
+
+TYPE: integer
+
+server -> proxy -> port : 8080
+```
+
+Each prompt shows the entire nested namespace. The output is `examples/json/nested.json`
+
+```json
+{
+  "server": {
+    "database": {
+      "hostname": "blue",
+      "port": 3000
+    },
+    "proxy": {
+      "hostname": "green",
+      "port": 8080
+    }
+  }
+}
+```

@@ -1,13 +1,12 @@
 {
   "server": {
-    "hostname": "nemo",
-    "one": {
-      "two": {
-        "three": "aaaaaaa",
-        "four": {
-          "five": "bbbbbbb"
-        }
-      }
+    "database": {
+      "hostname": "blue",
+      "port": 3000
+    },
+    "proxy": {
+      "hostname": "green",
+      "port": 8080
     }
   }
 }
