@@ -1,5 +1,5 @@
 {
-  "hostname": "nemo",
+  "hostname": "wakanda",
   "port": 8080,
-  "domain": "finding"
+  "ip": "127.0.0.0"
 }

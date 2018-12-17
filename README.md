@@ -323,7 +323,7 @@ In your example file, you can use the environment just like any other nested nam
 }
 ```
 
-The ability to change the structure of the output configuration file rests in the command-line options specified. The first output structure is done by simply specifying the example file.
+The ability to change the structure of the output configuration file rests in the command-line options specified. The first output structure includes all the environments and is created by simply specifying the example file.
 
 `npm run power-config -- -x examples/json/environments1.example.json`
 
@@ -462,6 +462,110 @@ And third, limit the scope to just one environment and flatten.
 ```
 
 ### The `environment` field
+
+The `environment` field is an alternative to the environments namespace as a means to limit the scope of the data field to one or more environments. You can set the value as a single string or an array of strings.
+
+```json
+{
+  "hostname": {
+    "description": "The hostname",
+    "type": "string"
+  },
+  "port": {
+    "description": "The port",
+    "type": "integer",
+    "environment": ["test", "prod"]
+  },
+  "domain": {
+    "description": "The domain",
+    "type": "string",
+    "environment": "test"
+  },
+  "ip": {
+    "description": "The IP address",
+    "type": "string",
+    "environment": "prod"
+  }
+}
+```
+
+`npm run power-config -- -x examples/json/environment1.example.json -e dev`
+
+```text
+DESCRIPTION: The hostname
+
+TYPE: string
+
+hostname : wakanda
+```
+
+```json
+{
+  "hostname": "wakanda"
+}
+```
+
+`npm run power-config -- -x examples/json/environment2.example.json -e test`
+
+```text
+DESCRIPTION: The hostname
+
+TYPE: string
+
+hostname : wakanda
+----------
+DESCRIPTION: The port
+
+TYPE: integer
+
+port : 8080
+----------
+DESCRIPTION: The domain
+
+TYPE: string
+
+domain : mcu
+```
+
+```json
+{
+  "hostname": "wakanda",
+  "port": 8080,
+  "domain": "mcu"
+}
+```
+
+`npm run power-config -- -x examples/json/environment3.example.json -e prod`
+
+```text
+DESCRIPTION: The hostname
+
+TYPE: string
+
+hostname : wakanda
+----------
+
+DESCRIPTION: The port
+
+TYPE: integer
+
+port : 8080
+----------
+
+DESCRIPTION: The IP address
+
+TYPE: string
+
+ip : 127.0.0.0
+```
+
+```json
+{
+  "hostname": "wakanda",
+  "port": 8080,
+  "ip": "127.0.0.0"
+}
+```
 
 ## CLI Examples
 

@@ -1,5 +1,5 @@
 {
-  "port": {
-    "dev": 80
-  }
+  "hostname": "wakanda",
+  "port": 8080,
+  "domain": "mcu"
 }
