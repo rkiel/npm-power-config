@@ -10,9 +10,9 @@ example + input = configuration
 
 ## API Examples
 
-### Description
+### The `description` field
 
-The `description` field provides the user with some context or instruction for the entering the input. The data field (i.e. `hostname`) is used as the prompt.
+The `description` field provides the user with some context or instruction for the entering the input for the given data field. For example, the data field (i.e. `hostname`) is used as the prompt.
 
 ```json
 {
@@ -40,7 +40,7 @@ The output is `examples/json/description.json`
 }
 ```
 
-### Type
+### The `type` field
 
 The `type` field defines how the user input will be stored. The value can be one of: `string`, `integer`, or `boolean`. This is an optional field and will default to `string`.
 
@@ -93,9 +93,9 @@ The output is `examples/json/type.json`
 }
 ```
 
-### Value
+### The `value` field
 
-Sometimes no user input is needed. The `value` field can be used to simply set the value.
+The `value` field simply hard-codes the data value without any input from the user.
 
 ```json
 {
@@ -113,9 +113,9 @@ Sometimes no user input is needed. The `value` field can be used to simply set t
 }
 ```
 
-### Include
+### The `include` field
 
-An alternative to using `value` to provide hard-coded input is to include the contents of another file. The `include` field specifies the path to the file. The file will be read and parsed based on the file type.
+The `include` field is an alternative to using the `value` field as a means of providing hard-coded input. It specifies the path to a file that will be read and parsed based on the file type.
 
 ```json
 {
@@ -128,7 +128,7 @@ An alternative to using `value` to provide hard-coded input is to include the co
 }
 ```
 
-The included file(s) do not have to be the same file type as the source file. You can include a JSON file: `examples/json/avengers.json`
+The included file does not have to be the same file type as the source file. You can include a JSON file: `examples/json/avengers.json`
 
 ```json
 ["blackwidow", "captain", "hawkeye", "hulk", "ironman", "thor"]
@@ -153,9 +153,9 @@ Or you can include a YAML file: `examples/json/jla.yml`
 }
 ```
 
-### Steps
+### The `steps` field
 
-Sometimes a `description` might not be the best way to help the user with the input. The `steps` field can provide a list of step-by-step instructions on how to get the information needed.
+The `steps` field enhances the `description` field by providing a list of step-by-step instructions on how the user can find the information needed for input.
 
 ```json
 {
@@ -188,9 +188,9 @@ The output is `examples/json/steps.json`
 }
 ```
 
-### Reserved words
+### Using reserved words as data fields
 
-In some cases, you might want to define a field name that is a reserved word used by `power-config`. For example, you might want to define a field called `type`. Since `power-config` already uses that, you must wrap the field name with a leading and a trailing underscore.
+You might want to define a data field that is the same name as one of the field names used in the `power-config` API. For example, you might want to define a field called `type`. To do that, you must wrap the field name with a leading and a trailing underscore.
 
 ```json
 {
@@ -218,7 +218,7 @@ The output is `examples/json/reserved.json`
 }
 ```
 
-### Nested values
+### Adding nested structure
 
 The structure of your configuration file does not have to be flat. You can create a namespace by nesting values within values.
 
@@ -292,13 +292,13 @@ Each prompt shows the entire nested namespace. The output is `examples/json/nest
 }
 ```
 
-### Environments
+### Working with multiple environments
 
-It is not uncommon to have multiple deployment environments, such as development, test, and production. And as soon as you have multiple environments, your configuration will need to be different in each of those environments.
+It is not uncommon to have multiple environments, such as development, test, and production. And as soon as you have multiple environments, your configuration will need to be different in each of those environments.
 
-By default, `power-config` supports the following environments: `local`, `dev`, `test`, and `prod`. (See the CLI examples on how you can change this default.) It supports a variety of ways to create your configuration file.
+`power-config` supports multiple working environments in a variety of ways so that you can create your configuration file exactly how you want it. By default, `power-config` is aware of the following environments: `local`, `dev`, `test`, and `prod`. (See the CLI examples on how you can change this default.)
 
-In your example file, you can use the environments just like any other nested namespace.
+In your example file, you can use the environment just like any other nested namespace.
 
 ```json
 {
@@ -323,7 +323,7 @@ In your example file, you can use the environments just like any other nested na
 }
 ```
 
-The ability to change the structure of the output configuration file rests in the command-line options specified. First, simply specify the example file.
+The ability to change the structure of the output configuration file rests in the command-line options specified. The first output structure is done by simply specifying the example file.
 
 `npm run power-config -- -x examples/json/environments1.example.json`
 
@@ -363,7 +363,7 @@ Notice you were prompted for all three environments and the output included all 
 }
 ```
 
-Next, you can limit the scope to just one environment by specifying the environment.
+The second output structure limits the scope to just one environment by specifying the environment using `-e`.
 
 `npm run power-config -- -x examples/json/environments2.example.json -e test`
 
@@ -385,7 +385,7 @@ Notice you were only prompted for the one environment and the output only includ
 }
 ```
 
-Finally, you can not only limit the scope to just one environment but also flatten the output by removing the environment namespace.
+Finally, the third output structure not only limits the scope to just one environment but also flattens the output using `-f` and removes the environment namespace.
 
 `npm run power-config -- -x examples/json/environments3.example.json -e test -f`
 
@@ -397,7 +397,7 @@ TYPE: integer
 test -> port : 8080
 ```
 
-Again, you were only prompted for the one environment but the output does not include the environment itself.
+Again, you were only prompted for the one environment but now the output does not include the environment itself.
 
 ```json
 {
@@ -405,7 +405,7 @@ Again, you were only prompted for the one environment but the output does not in
 }
 ```
 
-Of course, using the environment as a namespace is not limited to the top level. It can be used at lower levels of the namespace and you can change the structure of the output configuration file, just like the previous three examples, by changing the command-line options specified.
+Of course, using the environment as a namespace is not limited to the top level. The environments can also be used at any level of the namespace. You can change the structure of the output, just like the previous three examples, by specifying command-line options.
 
 ```json
 {
@@ -439,7 +439,7 @@ First, simply specify the example file.
 }
 ```
 
-Next, limit the scope to just one environment.
+Second, limit the scope to just one environment.
 
 `npm run power-config -- -x examples/json/environments5.example.json -e test`
 
@@ -451,7 +451,7 @@ Next, limit the scope to just one environment.
 }
 ```
 
-Finally, limit the scope to just one environment and flatten.
+And third, limit the scope to just one environment and flatten.
 
 `npm run power-config -- -x examples/json/environments6.example.json -e test -f`
 
@@ -460,6 +460,8 @@ Finally, limit the scope to just one environment and flatten.
   "port": 8080
 }
 ```
+
+### The `environment` field
 
 ## CLI Examples
 
