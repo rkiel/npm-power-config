@@ -489,6 +489,8 @@ The `environment` field is an alternative to the environments namespace as a mea
 }
 ```
 
+When a data field has no `environment` field defined, then the data field applies to all environments. Running with `-e dev` will prompt the user for only one input.
+
 `npm run power-config -- -x examples/json/environment1.example.json -e dev`
 
 ```text
@@ -499,11 +501,15 @@ TYPE: string
 hostname : wakanda
 ```
 
+The output only includes the one value.
+
 ```json
 {
   "hostname": "wakanda"
 }
 ```
+
+Running with `-e test` will prompt the user for three inputs.
 
 `npm run power-config -- -x examples/json/environment2.example.json -e test`
 
@@ -527,6 +533,8 @@ TYPE: string
 domain : mcu
 ```
 
+The output only includes three values. And notice that the environment does not get included in the output. With the `environment` field, you do not need to use `-f`.
+
 ```json
 {
   "hostname": "wakanda",
@@ -534,6 +542,8 @@ domain : mcu
   "domain": "mcu"
 }
 ```
+
+Running with `-e prod` will prompt the user for a different set of three inputs.
 
 `npm run power-config -- -x examples/json/environment3.example.json -e prod`
 
@@ -544,20 +554,20 @@ TYPE: string
 
 hostname : wakanda
 ----------
-
 DESCRIPTION: The port
 
 TYPE: integer
 
 port : 8080
 ----------
-
 DESCRIPTION: The IP address
 
 TYPE: string
 
 ip : 127.0.0.0
 ```
+
+The output only includes three values.
 
 ```json
 {
