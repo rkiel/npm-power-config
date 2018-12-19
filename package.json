@@ -1,6 +1,6 @@
 {
   "name": "power-config",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Utility to make it easier to construct config files",
   "main": "index.js",
   "repository": {
