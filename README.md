@@ -10,6 +10,30 @@ Features
 * Supports multiple environments, such as dev, test, and prod
 * Makes tracking configuration file changes over time easier
 
+## Background
+
+Applications and software tools often need run-time specific information. Rather than hard-coding this information into the application, the information is separated out into either environment variables and/or some kind of "configuration file". A "configuration file" is simply a set of key/value pairs, such as `port = 8080`. In some cases, a "configuration file" includes structure by nesting key/value pairs within a namespace.
+
+Sometimes the amount of run-time configuration information is very simple or small. In those cases, `power-config` is probably overkill and environment variables or a simple hand-written configuration file is good enough.
+
+In other cases, an application requires significant amounts of run-time configuration. Again, you could get by with a hand-written configuration file but experience has shown this presents some challenges.
+
+* As your application code changes over time and moves through the stages of local development, integration testing, and live in production, the content and structure of your configuration file needs to reflect those changes.
+* Maintaining multiple configuration files for development, test, and production is not DRY and can be challenging to keep synchronized.
+* Documentation for configuration files is often lacking. A best practice is to include an example configuration file in your source code. However, the place holders for the key/value pairs don't necessarily include context and instructions for new developers on how or where to get the actual values. Some formats, such as JSON, don't even support comments.
+
+## Introducing `power-config`
+
+The `power-config` tool attempts to address the challenges of maintaining a significant configuration file.
+
+It starts with the best practice of an example configuration file that is part of your source code. But rather than simply having a key/value pair and a placeholder for its value, it uses the value to describe the value itself. This supports documentation for new developers. The description can either be a hard-coded value or a prompt for the user to enter a value. The prompt can also include step-by-step instructions for how and where to get the value.
+
+`power-config` will read the example configuration file and generate the configuration file. In cases where user input is required, `power-config` will prompt the user, capture the input, and save it to another file, the "input file". The "input file", unlike the "example file", should probably not be part of your source code as it might contain sensitive data.
+
+As your code moves from local development, to integration testing, to live in production, you re-run `power-config` with the "input file". If the "input file" already contains a value, the user will not prompted and the value will be passed through to the "configuration file". If the value does not exist, then the use will be prompted and the "input file" will be updated.
+
+The intent of `power-config` is have one "example file" and one "input file" that can generate a "configuration file" for development, test, and production. This will keep things DRY. The key/value pairs in the "example file" can be associated with different environments.
+
 ## A Tale of Three Files
 
 example + input = output
@@ -61,6 +85,8 @@ npm run pc -- --help
 ```
 
 ## API Examples
+
+The "example file" can be written in either JSON or YAML. The API examples shown here are all in JSON.
 
 ### The `description` field
 
