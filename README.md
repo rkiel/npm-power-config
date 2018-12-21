@@ -727,11 +727,15 @@ If this option is not specified, then the default will be to use the name of the
 Use the `--environment` option to limit the scope to a specific environment. The default set of environments is:
 `local`, `dev`, `test`,`prod`. You can change the set of environments using the `.power-config` file.
 
+`npm run power-config -- -e test`
+
 If this option is not specified, then all environments will be processed.
 
 ### The `--flatten` option
 
 Use the `--flatten` option in conjunction with the `--environment` option to compress the structure of the output file by eliminating the environment from the namespace.
+
+`npm run power-config -- -e test -f`
 
 ### Running with different formats
 
@@ -750,13 +754,10 @@ You can customize `power-config` using an rc file written in either JSON or YAML
 ~/.power-config.yml   # HOME directory
 ```
 
-You can change the default set of environments.
+In the rc file, you can change the default set of environments by specifying an array of values.
 
 ```json
 {
   "environments": ["development", "integration", "live"]
 }
 ```
-
-* re-running commands
-* detecting changes
