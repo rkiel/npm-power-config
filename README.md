@@ -657,7 +657,106 @@ The output only includes three values.
 
 ## CLI Examples
 
+The `power-config` command-line tool supports a number of options.
+
+```bash
+npm run power-config -- --help
+```
+
+```text
+Usage: power-config [options]
+
+Options:
+  -V, --version                    output the version number
+  -i, --input <input>              input configuration file
+  -o, --output <output>            output configuration file
+  -x, --example <example>          example configuration file. Default is environment.example.json
+  -e, --environment <environment>  environment such as dev, test, or prod
+  -f, --flatten                    flatten nested environment
+  -h, --help                       output usage information
+```
+
+### Running with no options
+
+If you run `power-config` with no options, it uses the following defaults:
+
+* the "example file" is `environment.example.json`
+* the "input file is" `.environment.json`
+* the "output file" is `environment.json`
+
+### The `--example` option
+
+Use the `--example` option to specify the "example file". The file can be written in either JSON or YAML.
+
+`npm run power-config -- -x my_system_config.json`
+
+`npm run power-config -- -x my_system_config.yml`
+
+If this option is not specified, then the default will be `environment.example.json`
+
+### The `--output` option
+
+Use the `--output` option to specify the "output file". The file can be written in either JSON or YAML.
+
+`npm run power-config -- -o configuration.json`
+
+`npm run power-config -- -o configuration.yml`
+
+If this option is not specified, then the default will be to use the name of the "example file" with the words "example" and "sample" removed. The output format will default to the same type as the "example file".
+
+`npm run power-config -- -x environment.example.json # (output file is environment.json)`
+
+`npm run power-config -- -x environment.sample.json # (output file is environment.json)`
+
+### The `--input` option
+
+Use the `--input` option to specify the "input file". The file can be written in either JSON or YAML.
+
+`npm run power-config -- -i my_configuration.json`
+
+`npm run power-config -- -i my_configuration.yml`
+
+If this option is not specified, then the default will be to use the name of the "ouput file" with a dot added in front of the file name. The dot will make the file hidden on Linux. The input format will default to the same type as the "output file".
+
+`npm run power-config -- -o environment.json # (input file is .environment.json)`
+
+`npm run power-config -- -o path/to/environment.yml # (input file is path/to/.environment.yml)`
+
+### The `--environment` option
+
+Use the `--environment` option to limit the scope to a specific environment. The default set of environments is:
+`local`, `dev`, `test`,`prod`. You can change the set of environments using the `.power-config` file.
+
+If this option is not specified, then all environments will be processed.
+
+### The `--flatten` option
+
+Use the `--flatten` option in conjunction with the `--environment` option to compress the structure of the output file by eliminating the environment from the namespace.
+
+### Running with different formats
+
+`power-config` fully supports both JSON and YAML. The example, input, and output files do not all have to be the same format. You can mix and match the formats by specifying the names with the appropriate extensions using `-x`, `-o`, `-i` options.
+
+`npm run power-config -- -x example.yml -o environment.json -i my_environment.yml`
+
+### The `.power-config` rc file
+
+You can customize `power-config` using an rc file written in either JSON or YAML. `power-config` will search for the rc file in the following order:
+
+```bash
+./.power-config.json  # project directory
+./.power-config.yml   # project directory
+~/.power-config.json  # HOME directory
+~/.power-config.yml   # HOME directory
+```
+
+You can change the default set of environments.
+
+```json
+{
+  "environments": ["development", "integration", "live"]
+}
+```
+
 * re-running commands
-* the dot file
-* the rc file
 * detecting changes
