@@ -1,6 +1,6 @@
 {
   "name": "power-config",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Utility to make it easier to construct config files",
   "main": "index.js",
   "repository": {
@@ -15,7 +15,11 @@
     "power-config": "./cli.js"
   },
   "scripts": {},
-  "keywords": ["json", "yaml", "configuration"],
+  "keywords": [
+    "json",
+    "yaml",
+    "configuration"
+  ],
   "author": "Robert Kiel",
   "license": "MIT",
   "dependencies": {
