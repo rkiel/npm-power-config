@@ -1,14 +1,11 @@
 {
   "hostname": {
-    "description": "The hostname",
     "type": "string"
   },
   "port": {
-    "description": "The port",
     "type": "integer"
   },
   "public": {
-    "description": "Is this public?",
     "type": "boolean"
   }
 }

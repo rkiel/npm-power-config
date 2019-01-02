@@ -88,33 +88,25 @@ npm run pc -- --help
 
 The "example file" can be written in either JSON or YAML. The API examples shown here are all in JSON.
 
-### The `description` field
+### The `value` field
 
-The `description` field provides the user with some context or instruction for the entering the input for the given data field. For example, the data field (i.e. `hostname`) is used as the prompt.
+The `value` field simply hard-codes the data value without any input from the user. If a `value` field is not specified, the user will be prompted to enter a value.
 
 ```json
 {
-  "hostname": {
-    "description": "The hostname"
+  "port": {
+    "value": 8080
   }
 }
 ```
 
-`npm run power-config -- -x examples/json/description.example.json`
+`npm run power-config -- -x examples/json/value.example.json`
 
-```text
-DESCRIPTION: The hostname
-
-TYPE: string
-
-hostname : wakanda
-```
-
-The output is `examples/json/description.json`
+Since no input is needed from the user, the output file is automatically created as `examples/json/value.json`.
 
 ```json
 {
-  "hostname": "wakanda"
+  "port": 8080
 }
 ```
 
@@ -125,15 +117,12 @@ The `type` field defines how the user input will be stored. The value can be one
 ```json
 {
   "hostname": {
-    "description": "The hostname",
     "type": "string"
   },
   "port": {
-    "description": "The port",
     "type": "integer"
   },
   "public": {
-    "description": "Is this public?",
     "type": "boolean"
   }
 }
@@ -142,20 +131,14 @@ The `type` field defines how the user input will be stored. The value can be one
 `npm run power-config -- -x examples/json/type.example.json`
 
 ```text
-DESCRIPTION: The hostname
-
 TYPE: string
 
 hostname : wakanda
 ----------
-DESCRIPTION: The port
-
 TYPE: integer
 
 port : 8080
 ----------
-DESCRIPTION: Is this public?
-
 TYPE: boolean
 
 public : no
@@ -171,24 +154,24 @@ The output is `examples/json/type.json`
 }
 ```
 
-### The `value` field
+### The `default` field
 
-The `value` field simply hard-codes the data value without any input from the user.
+The `default` field defines the value when the user does not provide any input. This is an optional field. If provided, the default value will be displayed in the prompt inside brackets.
 
 ```json
 {
   "port": {
-    "value": 8080
+    "default": 80
   }
 }
 ```
 
-`npm run power-config -- -x examples/json/value.example.json`
+`npm run power-config -- -x examples/json/default.example.json`
 
-```json
-{
-  "port": 8080
-}
+```text
+TYPE: string
+
+port [80] : 8080
 ```
 
 ### The `include` field
@@ -228,6 +211,36 @@ Or you can include a YAML file: `examples/json/jla.yml`
 {
   "avengers": ["blackwidow", "captain", "hawkeye", "hulk", "ironman", "thor"],
   "jla": ["batman", "flash", "aquaman", "wonderwoman", "cyborg"]
+}
+```
+
+### The `description` field
+
+The `description` field provides the user with some context or instruction for the entering the input for the given data field. For example, the data field (i.e. `hostname`) is used as the prompt.
+
+```json
+{
+  "hostname": {
+    "description": "The hostname"
+  }
+}
+```
+
+`npm run power-config -- -x examples/json/description.example.json`
+
+```text
+DESCRIPTION: The hostname
+
+TYPE: string
+
+hostname : wakanda
+```
+
+The output is `examples/json/description.json`
+
+```json
+{
+  "hostname": "wakanda"
 }
 ```
 

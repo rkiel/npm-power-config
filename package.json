@@ -14,15 +14,8 @@
   "bin": {
     "power-config": "./cli.js"
   },
-  "scripts": {
-    "json": "node cli.js -x environment.json.example",
-    "yaml": "node cli.js -x environment.yaml.example",
-    "prejson": "rm -rf environment.json",
-    "preyaml": "rm -rf environment.yaml",
-    "postjson": "echo; echo environment.json; cat environment.json; echo; echo .environment.json; cat .environment.json",
-    "postyaml": "echo; echo environment.yaml; cat environment.yaml; echo; echo .environment.yaml; cat .environment.yaml"
-  },
-  "keywords": [],
+  "scripts": {},
+  "keywords": ["json", "yaml", "configuration"],
   "author": "Robert Kiel",
   "license": "MIT",
   "dependencies": {
