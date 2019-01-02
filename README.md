@@ -171,7 +171,15 @@ The `default` field defines the value when the user does not provide any input. 
 ```text
 TYPE: string
 
-port [80] : 8080
+port [80] :
+```
+
+The output is `examples/json/default.json`.
+
+```json
+{
+  "port": 80
+}
 ```
 
 ### The `include` field
