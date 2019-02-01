@@ -34,7 +34,7 @@ lib = {
 };
 
 program
-  .version('0.0.1')
+  .version('0.2.0')
   .option('-i, --input <input>', 'input configuration file')
   .option('-o, --output <output>', 'output configuration file')
   .option('-x, --example <example>', `example configuration file. Default is ${lib._example.DEFAULT}`)
