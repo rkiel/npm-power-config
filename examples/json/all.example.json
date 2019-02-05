@@ -1,0 +1,198 @@
+{
+  "default": {
+    "port": {
+      "default": 80
+    }
+  },
+  "description": {
+    "hostname": {
+      "description": "The hostname",
+      "type": "string"
+    }
+  },
+  "environment1": {
+    "hostname": {
+      "description": "The hostname",
+      "type": "string"
+    },
+    "port": {
+      "description": "The port",
+      "type": "integer",
+      "environment": ["test", "prod"]
+    },
+    "domain": {
+      "description": "The domain",
+      "type": "string",
+      "environment": "test"
+    },
+    "ip": {
+      "description": "The IP address",
+      "type": "string",
+      "environment": "prod"
+    }
+  },
+  "environment2": {
+    "hostname": {
+      "description": "The hostname",
+      "type": "string"
+    },
+    "port": {
+      "description": "The port",
+      "type": "integer",
+      "environment": ["test", "prod"]
+    },
+    "domain": {
+      "description": "The domain",
+      "type": "string",
+      "environment": "test"
+    },
+    "ip": {
+      "description": "The IP address",
+      "type": "string",
+      "environment": "prod"
+    }
+  },
+  "environment3": {
+    "dev": {
+      "port": {
+        "description": "The port",
+        "type": "integer"
+      }
+    },
+    "test": {
+      "port": {
+        "description": "The port",
+        "type": "integer"
+      }
+    },
+    "prod": {
+      "port": {
+        "description": "The port",
+        "type": "integer"
+      }
+    }
+  },
+  "environment4": {
+    "port": {
+      "dev": {
+        "value": 80
+      },
+      "test": {
+        "description": "The port",
+        "type": "integer"
+      },
+      "prod": {
+        "description": "The port",
+        "type": "integer"
+      }
+    }
+  },
+  "environment5": {
+    "port": {
+      "dev": {
+        "value": 80
+      },
+      "test": {
+        "description": "The port",
+        "type": "integer"
+      },
+      "prod": {
+        "description": "The port",
+        "type": "integer"
+      }
+    }
+  },
+  "environment6": {
+    "port": {
+      "dev": {
+        "value": 80
+      },
+      "test": {
+        "description": "The port",
+        "type": "integer"
+      },
+      "prod": {
+        "description": "The port",
+        "type": "integer"
+      }
+    }
+  },
+  "flatten": {
+    "dev": {
+      "port": {
+        "description": "The port",
+        "type": "integer"
+      }
+    },
+    "test": {
+      "port": {
+        "description": "The port",
+        "type": "integer"
+      }
+    },
+    "prod": {
+      "port": {
+        "description": "The port",
+        "type": "integer"
+      }
+    }
+  },
+  "include": {
+    "avengers": {
+      "include": "examples/json/avengers.json"
+    },
+    "jla": {
+      "include": "examples/json/jla.yml"
+    }
+  },
+  "nested": {
+    "server": {
+      "database": {
+        "hostname": {
+          "description": "The hostname"
+        },
+        "port": {
+          "description": "The port",
+          "type": "integer"
+        }
+      },
+      "proxy": {
+        "hostname": {
+          "description": "The hostname"
+        },
+        "port": {
+          "description": "The port",
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "reserved": {
+    "_type_": {
+      "description": "The type"
+    }
+  },
+  "steps": {
+    "username": {
+      "description": "The AWS username",
+      "steps": ["go to AWS Console", "select IAM", "click on Users"]
+    }
+  },
+  "type": {
+    "hostname": {
+      "type": "string"
+    },
+    "port": {
+      "type": "integer"
+    },
+    "public": {
+      "type": "boolean"
+    }
+  },
+  "value": {
+    "port": {
+      "value": 8080
+    },
+    "protocal": "https"
+  }
+}
