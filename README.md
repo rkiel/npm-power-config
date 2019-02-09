@@ -654,13 +654,17 @@ TYPE: string
 domain : mcu
 ```
 
-The output only includes three values. And notice that the environment does not get included in the output. With the `environment` field, you do not need to use `-f`.
+The output only includes three values .
 
 ```json
 {
   "hostname": "wakanda",
-  "port": 8080,
-  "domain": "mcu"
+  "port": {
+    "test": 8080
+  },
+  "domain": {
+    "test": "mcu"
+  }
 }
 ```
 
@@ -693,8 +697,12 @@ The output only includes three values.
 ```json
 {
   "hostname": "wakanda",
-  "port": 8080,
-  "ip": "127.0.0.0"
+  "port": {
+    "prod": 8080
+  },
+  "ip": {
+    "prod": "127.0.0.0"
+  }
 }
 ```
 
