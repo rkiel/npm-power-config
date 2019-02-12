@@ -4,5 +4,8 @@
   },
   "jla": {
     "include": "examples/json/jla.yml"
+  },
+  "shield": {
+    "include": "examples/json/shield.yml"
   }
 }

@@ -1,0 +1,7 @@
+port:
+  dev: 80
+  test: 8080
+  prod:
+    type: string
+hostname:
+  description: 'hostname'

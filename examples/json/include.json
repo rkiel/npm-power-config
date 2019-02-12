@@ -1,17 +1,8 @@
 {
-  "avengers": [
-    "blackwidow",
-    "captain",
-    "hawkeye",
-    "hulk",
-    "ironman",
-    "thor"
-  ],
-  "jla": [
-    "batman",
-    "flash",
-    "aquaman",
-    "wonderwoman",
-    "cyborg"
-  ]
+  "avengers": ["blackwidow", "captain", "hawkeye", "hulk", "ironman", "thor"],
+  "jla": ["batman", "flash", "aquaman", "wonderwoman", "cyborg"],
+  "shield": {
+    "port": 8080,
+    "hostname": "wakanda"
+  }
 }
