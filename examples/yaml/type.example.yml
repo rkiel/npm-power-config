@@ -1,0 +1,6 @@
+hostname:
+  type: string
+port:
+  type: integer
+public:
+  type: boolean

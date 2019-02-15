@@ -1,0 +1,3 @@
+hostname: wakanda
+port: 8080
+public: false

@@ -86,26 +86,25 @@ npm run pc -- --help
 
 ## API Examples
 
-The "example file" can be written in either JSON or YAML. The API examples shown here are all in JSON.
+The "example file" can be written in either JSON or YAML. The API examples shown here are all in YAML.
 
 ### The simplest case
 
 The simplest case is to just hard-code the data value without any input from the user.
 
-```json
-{
-  "port": 8080
-}
+```yaml
+port: 8080
 ```
 
-`npm run power-config -- -x examples/json/simple.example.json`
+```bash
+npm run power-config -- -x examples/yaml/simple.example.yml
+cat examples/yaml/sample.yml
+```
 
-Since no input is needed from the user, the output file is automatically created as `examples/json/simple.json`.
+Since no input is needed from the user, the output file is automatically created.
 
-```json
-{
-  "port": 8080
-}
+```yaml
+port: 8080
 ```
 
 Rather than hard-coding a specific string, boolean, or numeric value, you can define an object which includes metadata about the configuration item. The following sections describe the various metadata fields.
@@ -114,43 +113,38 @@ Rather than hard-coding a specific string, boolean, or numeric value, you can de
 
 The `value` field simply hard-codes the data value without any input from the user. If a `value` field is not specified, the user will be prompted to enter a value.
 
-```json
-{
-  "port": {
-    "value": 8080
-  }
-}
+```yaml
+port:
+  value: 8080
 ```
 
-`npm run power-config -- -x examples/json/value.example.json`
+```bash
+npm run power-config -- -x examples/yaml/value.example.yml
+cat examples/yaml/value.yml
+```
 
-Since no input is needed from the user, the output file is automatically created as `examples/json/value.json`.
+Since no input is needed from the user, the output file is automatically created.
 
-```json
-{
-  "port": 8080
-}
+```yaml
+port: 8080
 ```
 
 ### The `type` field
 
 The `type` field defines how the user input will be stored. The value can be one of: `string`, `integer`, or `boolean`. This is an optional field and will default to `string`.
 
-```json
-{
-  "hostname": {
-    "type": "string"
-  },
-  "port": {
-    "type": "integer"
-  },
-  "public": {
-    "type": "boolean"
-  }
-}
+```yaml
+hostname:
+  type: string
+port:
+  type: integer
+public:
+  type: boolean
 ```
 
-`npm run power-config -- -x examples/json/type.example.json`
+```bash
+npm run power-config -- -x examples/yaml/type.example.yml
+```
 
 ```text
 TYPE: string
@@ -166,14 +160,14 @@ TYPE: boolean
 public : no
 ```
 
-The output is `examples/json/type.json`
+```bash
+cat examples/yaml/type.yml
+```
 
-```json
-{
-  "hostname": "wakanda",
-  "port": 8080,
-  "public": false
-}
+```yaml
+hostname: wakanda
+port: 8080,
+public: false
 ```
 
 ### The `default` field
