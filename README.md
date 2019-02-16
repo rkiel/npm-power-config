@@ -174,15 +174,14 @@ public: false
 
 The `default` field defines the value when the user does not provide any input. This is an optional field. If provided, the default value will be displayed in the prompt inside brackets.
 
-```json
-{
-  "port": {
-    "default": 80
-  }
-}
+```yaml
+port:
+  default: 80
 ```
 
-`npm run power-config -- -x examples/json/default.example.json`
+```bash
+npm run power-config -- -x examples/yaml/default.example.yml
+```
 
 ```text
 TYPE: string
@@ -190,36 +189,32 @@ TYPE: string
 port [80] :
 ```
 
-The output is `examples/json/default.json`.
+```bash
+cat examples/yaml/default.yml
+```
 
-```json
-{
-  "port": 80
-}
+```yaml
+port: 80
 ```
 
 ### The `include` field
 
 The `include` field is an alternative to using the `value` field as a means of providing hard-coded input. It specifies the path to a file that will be read and parsed based on the file type.
 
-```json
-{
-  "avengers": {
-    "include": "examples/json/avengers.json"
-  },
-  "jla": {
-    "include": "examples/json/jla.yml"
-  }
-}
+```yaml
+avengers:
+  include: examples/yaml/avengers.json
+jla:
+  include: examples/yaml/jla.yml
 ```
 
-The included file does not have to be the same file type as the source file. You can include a JSON file: `examples/json/avengers.json`
+The included file does not have to be the same file type as the source file. You can include a JSON file: `examples/yaml/avengers.json`
 
 ```json
 ["blackwidow", "captain", "hawkeye", "hulk", "ironman", "thor"]
 ```
 
-Or you can include a YAML file: `examples/json/jla.yml`
+Or you can include a YAML file: `examples/yaml/jla.yml`
 
 ```yaml
 - batman
@@ -229,7 +224,10 @@ Or you can include a YAML file: `examples/json/jla.yml`
 - cyborg
 ```
 
-`npm run power-config -- -x examples/json/include.example.json`
+```bash
+npm run power-config -- -x examples/yaml/include.example.yml
+cat examples/yaml/include.yml
+```
 
 ```json
 {
