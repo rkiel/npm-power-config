@@ -90,40 +90,46 @@ The "example file" can be written in either JSON or YAML. The API examples shown
 
 ### The simplest case
 
-The simplest case is to just hard-code the data value without any input from the user.
+Start by creating an "example file".
+
+`vim examples/yaml/simple.example.yml`
+
+In the simplest case, we can define a key with a hard-coded value requiring no input from the user.
 
 ```yaml
 port: 8080
 ```
 
-```bash
-npm run power-config -- -x examples/yaml/simple.example.yml
-cat examples/yaml/sample.yml
-```
+Use `power-config` to read the "example file" and generate an "output file".
 
-Since no input is needed from the user, the output file is automatically created.
+`npm run power-config -- -x examples/yaml/simple.example.yml`
+
+The output file is automatically created since there is no input is needed from the user,
+
+`cat examples/yaml/sample.yml`
 
 ```yaml
 port: 8080
 ```
 
-Rather than hard-coding a specific string, boolean, or numeric value, you can define an object which includes metadata about the configuration item. The following sections describe the various metadata fields.
+While this scenario is simple, it does not showcase all the features of `power-config`. The following sections describe the features of `power-config`.
 
 ### The `value` field
 
 The `value` field simply hard-codes the data value without any input from the user. If a `value` field is not specified, the user will be prompted to enter a value.
+
+`vim examples/yaml/value.yml`
 
 ```yaml
 port:
   value: 8080
 ```
 
-```bash
-npm run power-config -- -x examples/yaml/value.example.yml
-cat examples/yaml/value.yml
-```
+`npm run power-config -- -x examples/yaml/value.example.yml`
 
 Since no input is needed from the user, the output file is automatically created.
+
+cat examples/yaml/value.yml
 
 ```yaml
 port: 8080
@@ -132,6 +138,8 @@ port: 8080
 ### The `type` field
 
 The `type` field defines how the user input will be stored. The value can be one of: `string`, `integer`, or `boolean`. This is an optional field and will default to `string`.
+
+`vim examples/yaml/type.yml`
 
 ```yaml
 hostname:
@@ -142,9 +150,9 @@ public:
   type: boolean
 ```
 
-```bash
-npm run power-config -- -x examples/yaml/type.example.yml
-```
+`npm run power-config -- -x examples/yaml/type.example.yml`
+
+The user will be prompted for input. For example,
 
 ```text
 TYPE: string
@@ -160,9 +168,7 @@ TYPE: boolean
 public : no
 ```
 
-```bash
-cat examples/yaml/type.yml
-```
+`cat examples/yaml/type.yml`
 
 ```yaml
 hostname: wakanda
@@ -174,24 +180,26 @@ public: false
 
 The `default` field defines the value when the user does not provide any input. This is an optional field. If provided, the default value will be displayed in the prompt inside brackets.
 
+`vim examples/yaml/default.example.yml`
+
 ```yaml
 port:
   default: 80
 ```
 
-```bash
-npm run power-config -- -x examples/yaml/default.example.yml
-```
+`npm run power-config -- -x examples/yaml/default.example.yml`
+
+The user will be prompted for input. For example,
 
 ```text
 TYPE: string
 
-port [80] :
+port [ 80 ] :
 ```
 
-```bash
-cat examples/yaml/default.yml
-```
+If the user clicks the enter/return key without any input, then the default value will be used.
+
+`cat examples/yaml/default.yml`
 
 ```yaml
 port: 80
@@ -201,6 +209,8 @@ port: 80
 
 The `include` field is an alternative to using the `value` field as a means of providing hard-coded input. It specifies the path to a file that will be read and parsed based on the file type.
 
+`vim examples/yaml/inclue.yml`
+
 ```yaml
 avengers:
   include: examples/yaml/avengers.json
@@ -208,13 +218,17 @@ jla:
   include: examples/yaml/jla.yml
 ```
 
-The included file does not have to be the same file type as the source file. You can include a JSON file: `examples/yaml/avengers.json`
+The include file does not have to be the same file type as the example file. You can include a JSON file.
+
+`cat examples/yaml/avengers.json`
 
 ```json
 ["blackwidow", "captain", "hawkeye", "hulk", "ironman", "thor"]
 ```
 
-Or you can include a YAML file: `examples/yaml/jla.yml`
+Or you can include a YAML file.
+
+`cat examples/yaml/jla.yml`
 
 ```yaml
 - batman
@@ -224,16 +238,26 @@ Or you can include a YAML file: `examples/yaml/jla.yml`
 - cyborg
 ```
 
-```bash
-npm run power-config -- -x examples/yaml/include.example.yml
-cat examples/yaml/include.yml
-```
+`npm run power-config -- -x examples/yaml/include.example.yml`
 
-```json
-{
-  "avengers": ["blackwidow", "captain", "hawkeye", "hulk", "ironman", "thor"],
-  "jla": ["batman", "flash", "aquaman", "wonderwoman", "cyborg"]
-}
+The two files are read and parsed based on their file extensions.
+
+`cat examples/yaml/include.yml`
+
+```yaml
+avengers:
+  - blackwidow
+  - captain
+  - hawkeye
+  - hulk
+  - ironman
+  - thor
+jla:
+  - batman
+  - flash
+  - aquaman
+  - wonderwoman
+  - cyborg
 ```
 
 ### The `description` field

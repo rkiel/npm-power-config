@@ -1,0 +1,4 @@
+avengers:
+  include: examples/yaml/avengers.json
+jla:
+  include: examples/yaml/jla.yml
