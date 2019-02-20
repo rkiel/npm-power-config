@@ -1,0 +1,6 @@
+dev:
+  port: 8080
+test:
+  port: 8080
+prod:
+  port: 80

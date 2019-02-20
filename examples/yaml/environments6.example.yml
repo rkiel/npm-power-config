@@ -1,0 +1,9 @@
+port:
+  dev:
+    value: 8080
+  test:
+    description: The port
+    type: integer
+  prod:
+    description: The port
+    type: integer

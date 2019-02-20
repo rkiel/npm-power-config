@@ -379,6 +379,8 @@ server:
 
 `npm run power-config -- -x examples/yaml/nested.example.yml`
 
+The user will be prompted for input. For example,
+
 ```text
 DESCRIPTION: The hostname
 
@@ -427,165 +429,189 @@ It is not uncommon to have multiple environments, such as development, test, and
 
 In your example file, you can use the environment just like any other nested namespace.
 
-```json
-{
-  "dev": {
-    "port": {
-      "description": "The port",
-      "type": "integer"
-    }
-  },
-  "test": {
-    "port": {
-      "description": "The port",
-      "type": "integer"
-    }
-  },
-  "prod": {
-    "port": {
-      "description": "The port",
-      "type": "integer"
-    }
-  }
-}
+`vim examples/yaml/environments1.example.yml`
+
+```yaml
+dev:
+  port:
+    description: The port
+    type: integer
+test:
+  port:
+    description: The port
+    type: integer
+prod:
+  port:
+    description: The port
+    type: integer
 ```
 
 The ability to change the structure of the output configuration file rests in the command-line options specified. The first output structure includes all the environments and is created by simply specifying the example file.
 
-`npm run power-config -- -x examples/json/environments1.example.json`
+`npm run power-config -- -x examples/yaml/environments1.example.yml`
+
+The user will be prompted for input. For example,
 
 ```text
 DESCRIPTION: The port
 
 TYPE: integer
 
-dev -> port : 8080
+dev.port : 8080
 ----------
 DESCRIPTION: The port
 
 TYPE: integer
 
-test -> port : 8080
+test.port : 8080
 ----------
 DESCRIPTION: The port
 
 TYPE: integer
 
-prod -> port : 80
+prod.port : 80
 ```
 
 Notice you were prompted for all three environments and the output included all three environments.
 
-```json
-{
-  "dev": {
-    "port": 8080
-  },
-  "test": {
-    "port": 8080
-  },
-  "prod": {
-    "port": 80
-  }
-}
+`cat examples/yaml/environments1.example.yml`
+
+```yaml
+dev:
+  port: 8080
+test:
+  port: 8080
+prod:
+  port: 80
 ```
 
 The second output structure limits the scope to just one environment by specifying the environment using `-e`.
 
-`npm run power-config -- -x examples/json/environments2.example.json -e test`
+`npm run power-config -- -x examples/yaml/environments2.example.yml -e test`
+
+The user will be prompted for input. For example,
 
 ```text
 DESCRIPTION: The port
 
 TYPE: integer
 
-test -> port : 8080
+test.port : 8080
 ```
 
 Notice you were only prompted for the one environment and the output only included the one environment.
 
-```json
-{
-  "test": {
-    "port": 8080
-  }
-}
+`cat examples/yaml/environments2.example.yml`
+
+```yaml
+test:
+  port: 8080
 ```
 
 Finally, the third output structure not only limits the scope to just one environment but also flattens the output using `-f` and removes the environment namespace.
 
-`npm run power-config -- -x examples/json/environments3.example.json -e test -f`
+`npm run power-config -- -x examples/yaml/environments3.example.yml -e test -f`
+
+The user will be prompted for input. For example,
 
 ```text
 DESCRIPTION: The port
 
 TYPE: integer
 
-test -> port : 8080
+test.port : 8080
 ```
 
 Again, you were only prompted for the one environment but now the output does not include the environment itself.
 
-```json
-{
-  "port": 8080
-}
+`cat examples/yaml/environments3.example.yml`
+
+```yaml
+port: 8080
 ```
 
 Of course, using the environment as a namespace is not limited to the top level. The environments can also be used at any level of the namespace. You can change the structure of the output, just like the previous three examples, by specifying command-line options.
 
-```json
-{
-  "port": {
-    "dev": {
-      "value": 80
-    },
-    "test": {
-      "description": "The port",
-      "type": "integer"
-    },
-    "prod": {
-      "description": "The port",
-      "type": "integer"
-    }
-  }
-}
+```yaml
+port:
+  dev:
+    value: 8080
+  test:
+    description: The port
+    type: integer
+  prod:
+    description: The port
+    type: integer
 ```
 
 First, simply specify the example file.
 
-`npm run power-config -- -x examples/json/environments4.example.json`
+`npm run power-config -- -x examples/yaml/environments4.example.yml`
 
-```json
-{
-  "port": {
-    "dev": 80,
-    "test": 8080,
-    "prod": 80
-  }
-}
+The user will be prompted for input. For example,
+
+```
+DESCRIPTION: The port
+
+TYPE: integer
+
+port.test : 8080
+----------
+DESCRIPTION: The port
+
+TYPE: integer
+
+port.prod : 80
+```
+
+`cat examples/yaml/environments4.yml`
+
+```yaml
+port:
+  dev: 8080
+  test: 8080
+  prod: 80
 ```
 
 Second, limit the scope to just one environment.
 
-`npm run power-config -- -x examples/json/environments5.example.json -e test`
+`npm run power-config -- -x examples/yaml/environments5.example.yml -e test`
 
-```json
-{
-  "port": {
-    "test": 8080
-  }
-}
+The user will be prompted for input. For example,
+
+```
+DESCRIPTION: The port
+
+TYPE: integer
+
+port.test : 8080
+```
+
+`cat examples/yaml/environments5.yml`
+
+```yaml
+port:
+  test: 8080
 ```
 
 And third, limit the scope to just one environment and flatten.
 
-`npm run power-config -- -x examples/json/environments6.example.json -e test -f`
+`npm run power-config -- -x examples/yaml/environments6.example.yml -e test -f`
 
-```json
-{
-  "port": 8080
-}
+The user will be prompted for input. For example,
+
+```
+DESCRIPTION: The port
+
+TYPE: integer
+
+port.test : 8080
+```
+
+`cat examples/yaml/environments6.yml`
+
+```yaml
+port: 8080
 ```
 
 ### The `environment` field
