@@ -1,0 +1,7 @@
+server:
+  database:
+    hostname: blue
+    port: 3000
+  proxy:
+    hostname: green
+    port: 8080

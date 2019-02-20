@@ -1,0 +1,13 @@
+server:
+  database:
+    hostname:
+      description: The hostname
+    port:
+      description: The port
+      type: integer
+  proxy:
+    hostname:
+      description: The hostname
+    port:
+      description: The port
+      type: integer

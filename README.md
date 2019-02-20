@@ -264,15 +264,16 @@ jla:
 
 The `description` field provides the user with some context or instruction for the entering the input for the given data field. For example, the data field (i.e. `hostname`) is used as the prompt.
 
-```json
-{
-  "hostname": {
-    "description": "The hostname"
-  }
-}
+`vim examples/yaml/description.yml`
+
+```yaml
+hostname:
+  description: The hostname
 ```
 
-`npm run power-config -- -x examples/json/description.example.json`
+`npm run power-config -- -x examples/yaml/description.example.yml`
+
+The user will be prompted for input. For example,
 
 ```text
 DESCRIPTION: The hostname
@@ -282,28 +283,30 @@ TYPE: string
 hostname : wakanda
 ```
 
-The output is `examples/json/description.json`
+`cat examples/yaml/description.yml`
 
-```json
-{
-  "hostname": "wakanda"
-}
+```yaml
+hostname: wakanda
 ```
 
 ### The `steps` field
 
 The `steps` field enhances the `description` field by providing a list of step-by-step instructions on how the user can find the information needed for input.
 
-```json
-{
-  "username": {
-    "description": "The AWS username",
-    "steps": ["go to AWS Console", "select IAM", "click on Users"]
-  }
-}
+`vim examples/yaml/steps.example.yml`
+
+```yaml
+username:
+  description: The AWS username
+  steps:
+    - go to AWS Console
+    - select IAM
+    - click on Users
 ```
 
-`npm run power-config -- -x examples/json/steps.example.json`
+`npm run power-config -- -x examples/yaml/steps.example.yml`
+
+The user will be prompted for input. For example,
 
 ```text
 DESCRIPTION: The AWS username
@@ -317,27 +320,26 @@ TYPE: string
 username : sally
 ```
 
-The output is `examples/json/steps.json`
+`cat examples/yaml/steps.yml`
 
-```json
-{
-  "username": "sally"
-}
+```yaml
+username: sally
 ```
 
 ### Using reserved words as data fields
 
 You might want to define a data field that is the same name as one of the field names used in the `power-config` API. For example, you might want to define a field called `type`. To do that, you must wrap the field name with a leading and a trailing underscore.
 
-```json
-{
-  "_type_": {
-    "description": "The type"
-  }
-}
+`vim examples/yaml/reserved.example.yml`
+
+```yaml
+_type_:
+  description: The type
 ```
 
-`npm run power-config -- -x examples/json/reserved.example.json`
+`npm run power-config -- -x examples/yaml/reserved.example.yml`
+
+The user will be prompted for input. For example,
 
 ```text
 DESCRIPTION: The type
@@ -347,86 +349,74 @@ TYPE: string
 _type_ : EC2 Instance
 ```
 
-The output is `examples/json/reserved.json`
+`cat examples/yaml/reserved.yml`
 
-```json
-{
-  "type": "EC2 Instance"
-}
+```yaml
+type: EC2 Instance
 ```
 
 ### Adding nested structure
 
 The structure of your configuration file does not have to be flat. You can create a namespace by nesting values within values.
 
-```json
-{
-  "server": {
-    "database": {
-      "hostname": {
-        "description": "The hostname"
-      },
-      "port": {
-        "description": "The port",
-        "type": "integer"
-      }
-    },
-    "proxy": {
-      "hostname": {
-        "description": "The hostname"
-      },
-      "port": {
-        "description": "The port",
-        "type": "integer"
-      }
-    }
-  }
-}
+`vim examples/yaml/nested.example.yml`
+
+```yaml
+server:
+  database:
+    hostname:
+      description: The hostname
+    port:
+      description: The port
+      type: integer
+  proxy:
+    hostname:
+      description: The hostname
+    port:
+      description: The port
+      type: integer
 ```
 
-`npm run power-config -- -x examples/json/nested.example.json`
+`npm run power-config -- -x examples/yaml/nested.example.yml`
 
 ```text
 DESCRIPTION: The hostname
 
 TYPE: string
 
-server -> database -> hostname : blue
+serve.database.hostname : blue
 ----------
 DESCRIPTION: The port
 
 TYPE: integer
 
-server -> database -> port : 3000
+server.database.port : 3000
 ----------
 DESCRIPTION: The hostname
 
 TYPE: string
 
-server -> proxy -> hostname : green
+server.proxy.hostname : green
 ----------
 DESCRIPTION: The port
 
 TYPE: integer
 
-server -> proxy -> port : 8080
+server.proxy.port : 8080
 ```
 
-Each prompt shows the entire nested namespace. The output is `examples/json/nested.json`
+Each prompt shows the entire nested namespace.
 
-```json
-{
-  "server": {
-    "database": {
-      "hostname": "blue",
-      "port": 3000
-    },
-    "proxy": {
-      "hostname": "green",
-      "port": 8080
-    }
-  }
-}
+`cat examples/yaml/nested.yml`
+
+```yaml
+server:
+  database:
+    hostname: blue
+    port: 3000
+  proxy:
+    hostname: green
+    port: 8080
 ```
 
 ### Working with multiple environments
