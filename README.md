@@ -742,9 +742,7 @@ ip:
 
 The `power-config` command-line tool supports a number of options.
 
-```bash
-npm run power-config -- --help
-```
+`npm run power-config -- --help`
 
 ```text
 Usage: power-config [options]
@@ -755,6 +753,7 @@ Options:
   -o, --output <output>            output configuration file
   -x, --example <example>          example configuration file. Default is environment.example.json
   -e, --environment <environment>  environment such as dev, test, or prod
+  -C, --clear <clear>              path to input value to clear
   -f, --flatten                    flatten nested environment
   -h, --help                       output usage information
 ```
@@ -763,9 +762,9 @@ Options:
 
 If you run `power-config` with no options, it uses the following defaults:
 
-* the "example file" is `environment.example.json`
-* the "input file is" `.environment.json`
-* the "output file" is `environment.json`
+* the "example file" is `environment.example.yml`
+* the "input file is" `environment.input.yml`
+* the "output file" is `environment.yml`
 
 ### The `--example` option
 
@@ -824,7 +823,15 @@ Use the `--flatten` option in conjunction with the `--environment` option to com
 
 `power-config` fully supports both JSON and YAML. The example, input, and output files do not all have to be the same format. You can mix and match the formats by specifying the names with the appropriate extensions using `-x`, `-o`, `-i` options.
 
-`npm run power-config -- -x example.yml -o environment.json -i my_environment.yml`
+`npm run power-config -- -x example.yml -o environment.json -i input.yml`
+
+### The `--clear` option
+
+Use the `--clear` option to clear a specific value in the input file before running through the example.
+
+`npm run power-config`
+
+`npm run power-config -- -clear port.test`
 
 ### The `.power-config` rc file
 
