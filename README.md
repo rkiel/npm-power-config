@@ -846,8 +846,9 @@ You can customize `power-config` using an rc file written in either JSON or YAML
 
 In the rc file, you can change the default set of environments by specifying an array of values.
 
-```json
-{
-  "environments": ["development", "integration", "live"]
-}
+```yaml
+environments:
+  - development
+  - integration
+  - live
 ```
