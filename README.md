@@ -532,6 +532,8 @@ port: 8080
 
 Of course, using the environment as a namespace is not limited to the top level. The environments can also be used at any level of the namespace. You can change the structure of the output, just like the previous three examples, by specifying command-line options.
 
+`vim examples/yaml/environments4.example.yml`
+
 ```yaml
 port:
   dev:
@@ -550,7 +552,7 @@ First, simply specify the example file.
 
 The user will be prompted for input. For example,
 
-```
+```text
 DESCRIPTION: The port
 
 TYPE: integer
@@ -579,7 +581,7 @@ Second, limit the scope to just one environment.
 
 The user will be prompted for input. For example,
 
-```
+```text
 DESCRIPTION: The port
 
 TYPE: integer
@@ -600,7 +602,7 @@ And third, limit the scope to just one environment and flatten.
 
 The user will be prompted for input. For example,
 
-```
+```text
 DESCRIPTION: The port
 
 TYPE: integer
@@ -618,33 +620,31 @@ port: 8080
 
 The `environment` field is an alternative to the environments namespace as a means to limit the scope of the data field to one or more environments. You can set the value as a single string or an array of strings.
 
-```json
-{
-  "hostname": {
-    "description": "The hostname",
-    "type": "string"
-  },
-  "port": {
-    "description": "The port",
-    "type": "integer",
-    "environment": ["test", "prod"]
-  },
-  "domain": {
-    "description": "The domain",
-    "type": "string",
-    "environment": "test"
-  },
-  "ip": {
-    "description": "The IP address",
-    "type": "string",
-    "environment": "prod"
-  }
-}
+`vim examples/yaml/environment1.example.yml`
+
+```yaml
+hostname:
+  description: The hostname
+  type: string
+port:
+  description: The port
+  type: integer
+  environment: [test, prod]
+domain:
+  description: The domain
+  type": string
+  environment: test
+ip:
+  description: The IP address
+  type: string
+  environment: prod
 ```
 
 When a data field has no `environment` field defined, then the data field applies to all environments. Running with `-e dev` will prompt the user for only one input.
 
-`npm run power-config -- -x examples/json/environment1.example.json -e dev`
+`npm run power-config -- -x examples/yaml/environment1.example.yml -e dev`
+
+The user will be prompted for input. For example,
 
 ```text
 DESCRIPTION: The hostname
@@ -656,15 +656,17 @@ hostname : wakanda
 
 The output only includes the one value.
 
-```json
-{
-  "hostname": "wakanda"
-}
+`cat examples/yaml/environment1.yml`
+
+```yaml
+hostname: wakanda
 ```
 
 Running with `-e test` will prompt the user for three inputs.
 
-`npm run power-config -- -x examples/json/environment2.example.json -e test`
+`npm run power-config -- -x examples/yaml/environment2.example.yml -e test`
+
+The user will be prompted for input. For example,
 
 ```text
 DESCRIPTION: The hostname
@@ -688,21 +690,21 @@ domain : mcu
 
 The output only includes three values .
 
-```json
-{
-  "hostname": "wakanda",
-  "port": {
-    "test": 8080
-  },
-  "domain": {
-    "test": "mcu"
-  }
-}
+`cat examples/yaml/environment2.yml`
+
+```yaml
+hostname: wakanda
+port:
+  test: 8080
+domain:
+  test: mcu
 ```
 
 Running with `-e prod` will prompt the user for a different set of three inputs.
 
-`npm run power-config -- -x examples/json/environment3.example.json -e prod`
+`npm run power-config -- -x examples/yaml/environment3.example.yml -e prod`
+
+The user will be prompted for input. For example,
 
 ```text
 DESCRIPTION: The hostname
@@ -715,7 +717,7 @@ DESCRIPTION: The port
 
 TYPE: integer
 
-port : 8080
+port : 80
 ----------
 DESCRIPTION: The IP address
 
@@ -726,16 +728,14 @@ ip : 127.0.0.0
 
 The output only includes three values.
 
-```json
-{
-  "hostname": "wakanda",
-  "port": {
-    "prod": 8080
-  },
-  "ip": {
-    "prod": "127.0.0.0"
-  }
-}
+`cat examples/yaml/environment3.yml`
+
+```yaml
+hostname: wakanda
+port:
+  prod: 80
+ip:
+  prod: 127.0.0.0
 ```
 
 ## CLI Examples

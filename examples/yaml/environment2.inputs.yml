@@ -1,0 +1,5 @@
+hostname: wakanda
+port:
+  test: 8080
+domain:
+  test: mcu
