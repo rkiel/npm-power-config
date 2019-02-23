@@ -7,6 +7,25 @@
 YAML examples
 
 ```bash
+rm -rf examples/yaml/simple.yml
+rm -rf examples/yaml/value.yml
+rm -rf examples/yaml/type.yml
+rm -rf examples/yaml/default.yml
+rm -rf examples/yaml/include.yml
+rm -rf examples/yaml/description.yml
+rm -rf examples/yaml/steps.yml
+rm -rf examples/yaml/reserved.yml
+rm -rf examples/yaml/nested.yml
+rm -rf examples/yaml/environments1.yml
+rm -rf examples/yaml/environments2.yml
+rm -rf examples/yaml/environments3.yml
+rm -rf examples/yaml/environments4.yml
+rm -rf examples/yaml/environments5.yml
+rm -rf examples/yaml/environments6.yml
+rm -rf examples/yaml/environment1.yml
+rm -rf examples/yaml/environment2.yml
+rm -rf examples/yaml/environment3.yml
+
 node cli.js -x examples/yaml/simple.example.yml
 node cli.js -x examples/yaml/value.example.yml
 node cli.js -x examples/yaml/type.example.yml
