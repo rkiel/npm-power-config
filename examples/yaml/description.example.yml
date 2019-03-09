@@ -1,2 +1,7 @@
 hostname:
   description: The hostname
+port:
+  description:
+    - The port
+    - usually a number
+  type: integer

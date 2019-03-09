@@ -262,13 +262,17 @@ jla:
 
 ### The `description` field
 
-The `description` field provides the user with some context or instruction for the entering the input for the given data field. For example, the data field (i.e. `hostname`) is used as the prompt.
+The `description` field provides the user with some context for the given data field. The value can be either a string or an array.
 
 `vim examples/yaml/description.yml`
 
 ```yaml
 hostname:
   description: The hostname
+port:
+  description:
+    - The port
+    - usually a number
 ```
 
 `npm run power-config -- -x examples/yaml/description.example.yml`
@@ -281,12 +285,21 @@ DESCRIPTION: The hostname
 TYPE: string
 
 hostname : wakanda
+----------
+DESCRIPTION:
+- The port
+- usually a number
+
+TYPE: string
+
+port : 80
 ```
 
 `cat examples/yaml/description.yml`
 
 ```yaml
 hostname: wakanda
+port: 80
 ```
 
 ### The `steps` field
