@@ -300,8 +300,9 @@ username:
   description: The AWS username
   steps:
     - go to AWS Console
-    - select IAM
-    - click on Users
+    - - select IAM
+      - - click on Users
+        - - find your username
 ```
 
 `npm run power-config -- -x examples/yaml/steps.example.yml`
@@ -311,9 +312,9 @@ The user will be prompted for input. For example,
 ```text
 DESCRIPTION: The AWS username
 
-STEP 1.  go to AWS Console
-STEP 2.  select IAM
-STEP 3.  click on Users
+- go to AWS Console
+- select IAM
+- click on Users
 
 TYPE: string
 
