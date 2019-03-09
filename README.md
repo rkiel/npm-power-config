@@ -770,7 +770,7 @@ Options:
   -e, --environment <environment>  environment such as dev, test, or prod
   -f, --flatten                    flatten nested environment
   -C, --clear <clear>              path(s) to input value(s) to clear and/or set
-  -I, --no-inputs                  fail if inputs are required
+  -U, --no-user-inputs             exit with failure if user input is required
   -h, --help                       output usage information
 ```
 
