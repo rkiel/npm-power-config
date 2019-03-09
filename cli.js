@@ -39,7 +39,7 @@ program
   .option('-o, --output <output>', 'output configuration file')
   .option('-x, --example <example>', `example configuration file. Default is ${lib._example.DEFAULT}`)
   .option('-e, --environment <environment>', 'environment such as dev, test, or prod')
-  .option('-C, --clear <clear>', 'path to input value to clear')
+  .option('-C, --clear <clear>', 'path(s) to input value(s) to clear and/or set')
   .option('-f, --flatten', 'flatten nested environment')
   .action(lib.actionHandler(program))
   .parse(process.argv);

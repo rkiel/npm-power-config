@@ -754,7 +754,7 @@ Options:
   -o, --output <output>            output configuration file
   -x, --example <example>          example configuration file. Default is environment.example.json
   -e, --environment <environment>  environment such as dev, test, or prod
-  -C, --clear <clear>              path to input value to clear
+  -C, --clear <clear>              path(s) to input value(s) to clear and/or set
   -f, --flatten                    flatten nested environment
   -h, --help                       output usage information
 ```
@@ -828,11 +828,15 @@ Use the `--flatten` option in conjunction with the `--environment` option to com
 
 ### The `--clear` option
 
-Use the `--clear` option to clear a specific value in the input file before running through the example.
+Use the `--clear` option to clear and/or set a specific value(s) in the input file before running through the example. To clear a value, specify its path. To set a value, specify its path followed by `=` followed by its value. To clear/set more than one path, use a comma.
 
 `npm run power-config`
 
 `npm run power-config -- -clear port.test`
+
+`npm run power-config -- -clear port.test=8080`
+
+`npm run power-config -- -clear hostname.test,port.test=8080`
 
 ### The `.power-config` rc file
 
