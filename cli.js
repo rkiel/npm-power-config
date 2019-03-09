@@ -19,7 +19,7 @@ function actionHandler(p) {
       lib._input.writeFile,
       lib._output.writeFile
     ];
-    _.flow(f)({ program: _.pick(p, ['input', 'output', 'example', 'environment', 'flatten', 'clear']) });
+    _.flow(f)({ program: _.pick(p, ['input', 'output', 'example', 'environment', 'flatten', 'clear', 'inputs']) });
   };
 }
 
@@ -39,7 +39,8 @@ program
   .option('-o, --output <output>', 'output configuration file')
   .option('-x, --example <example>', `example configuration file. Default is ${lib._example.DEFAULT}`)
   .option('-e, --environment <environment>', 'environment such as dev, test, or prod')
-  .option('-C, --clear <clear>', 'path(s) to input value(s) to clear and/or set')
   .option('-f, --flatten', 'flatten nested environment')
+  .option('-C, --clear <clear>', 'path(s) to input value(s) to clear and/or set')
+  .option('-I, --no-inputs', 'exit with failure if user input is required')
   .action(lib.actionHandler(program))
   .parse(process.argv);

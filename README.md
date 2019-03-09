@@ -273,6 +273,7 @@ port:
   description:
     - The port
     - usually a number
+  type: integer
 ```
 
 `npm run power-config -- -x examples/yaml/description.example.yml`
@@ -767,8 +768,9 @@ Options:
   -o, --output <output>            output configuration file
   -x, --example <example>          example configuration file. Default is environment.example.json
   -e, --environment <environment>  environment such as dev, test, or prod
-  -C, --clear <clear>              path(s) to input value(s) to clear and/or set
   -f, --flatten                    flatten nested environment
+  -C, --clear <clear>              path(s) to input value(s) to clear and/or set
+  -I, --no-inputs                  fail if inputs are required
   -h, --help                       output usage information
 ```
 
