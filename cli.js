@@ -19,7 +19,9 @@ function actionHandler(p) {
       lib._input.writeFile,
       lib._output.writeFile
     ];
-    _.flow(f)({ program: _.pick(p, ['input', 'output', 'example', 'environment', 'flatten', 'clear', 'userInputs']) });
+    _.flow(f)({
+      program: _.pick(p, ['input', 'output', 'example', 'environment', 'flatten', 'clear', 'userInputs', 'review'])
+    });
   };
 }
 
@@ -42,5 +44,6 @@ program
   .option('-f, --flatten', 'flatten nested environment')
   .option('-C, --clear <clear>', 'path(s) to input value(s) to clear and/or set')
   .option('-U, --no-user-inputs', 'exit with failure if user input is required')
+  .option('-R, --review', 'review all user inputs')
   .action(lib.actionHandler(program))
   .parse(process.argv);

@@ -771,6 +771,7 @@ Options:
   -f, --flatten                    flatten nested environment
   -C, --clear <clear>              path(s) to input value(s) to clear and/or set
   -U, --no-user-inputs             exit with failure if user input is required
+  -R, --review                     review all user inputs
   -h, --help                       output usage information
 ```
 
