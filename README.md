@@ -137,7 +137,7 @@ port: 8080
 
 ### The `type` field
 
-The `type` field defines how the user input will be stored. The value can be one of: `string`, `integer`, or `boolean`. This is an optional field and will default to `string`.
+The `type` field defines how the user input will be stored. The value can be one of: `string`, `integer`, `boolean`, `arrayOfString`, or `arrayOfInteger`. This is an optional field and will default to `string`. For array types, use a comma to enter multiple values.
 
 `vim examples/yaml/type.yml`
 
