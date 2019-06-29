@@ -16,6 +16,7 @@ rm -rf examples/yaml/description.yml
 rm -rf examples/yaml/steps.yml
 rm -rf examples/yaml/reserved.yml
 rm -rf examples/yaml/nested.yml
+rm -rf examples/yaml/dotenv.ini
 rm -rf examples/yaml/environments1.yml
 rm -rf examples/yaml/environments2.yml
 rm -rf examples/yaml/environments3.yml
@@ -35,6 +36,7 @@ node cli.js -x examples/yaml/description.example.yml
 node cli.js -x examples/yaml/steps.example.yml
 node cli.js -x examples/yaml/reserved.example.yml
 node cli.js -x examples/yaml/nested.example.yml
+node cli.js -x examples/yaml/dotenv.example.yml -o examples/yaml/dotenv.ini
 node cli.js -x examples/yaml/environments1.example.yml
 node cli.js -x examples/yaml/environments2.example.yml -e test
 node cli.js -x examples/yaml/environments3.example.yml -e test -f
