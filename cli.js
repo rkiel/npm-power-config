@@ -64,6 +64,6 @@ program
   )
   .option("-U, --no-user-inputs", "exit with failure if user input is required")
   .option("-R, --review", "review all user inputs")
-  .option("-p, --pattern <pattern>", "review user inputs that match pattern")
+  .option("-P, --pattern <pattern>", "review user inputs that match pattern")
   .action(lib.actionHandler(program))
   .parse(process.argv);
