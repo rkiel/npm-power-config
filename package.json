@@ -27,7 +27,7 @@
   "dependencies": {
     "commander": "^2.19.0",
     "js-yaml": "^3.13.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.14",
     "prompt-sync": "^4.1.6"
   },
   "devDependencies": {
