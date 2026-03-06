@@ -17,7 +17,7 @@ describe('input', () => {
         expect(lib.addFileName(state)).toEqual({
           program: { input: undefined },
           output: { fileName: undefined },
-          input: { fileName: 'environment.inputs.json' }
+          input: { fileName: 'environment.inputs.yml' }
         });
       });
     });
@@ -29,7 +29,7 @@ describe('input', () => {
         expect(lib.addFileName(state)).toEqual({
           program: { input: undefined },
           output: { fileName: 'myEnv.example.json' },
-          input: { fileName: 'myEnv.inputs.json' }
+          input: { fileName: 'environment.inputs.yml'  }
         });
       });
     });
@@ -41,7 +41,7 @@ describe('input', () => {
         expect(lib.addFileName(state)).toEqual({
           program: { input: undefined },
           output: { fileName: 'one/two/myEnv.example.json' },
-          input: { fileName: 'one/two/myEnv.inputs.json' }
+          input: { fileName: 'environment.inputs.yml' }
         });
       });
     });
